@@ -1,0 +1,20 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Shubham Jaiswar",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "mongoose": "^5.4.13",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.10",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  }
+}
