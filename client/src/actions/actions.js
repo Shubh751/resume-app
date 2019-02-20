@@ -2,6 +2,12 @@ export function save_Project_data(data){
     return { type:'SAVE_PROJECT_DATA',data }
 }
 
+export function showProject(id){
+    return { type:'SHOW_PROJECT',id}
+}
+
+
+
 // export function addCom(data1){
 //     return { type: 'ADD_COMMENT', data1 }
 // }

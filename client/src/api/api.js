@@ -20,6 +20,21 @@ export const student_sign_Up = async (url,data) =>{
   }).catch(error=>alert(error))
 }
 
+export const project = async (id) =>{
+	const url="/project/"+id;
+	const token=localStorage.getItem('token');
+	const data = await fetch(url,{
+		method:'GET',
+		headers:{
+			'Content-Type':'application/json',
+			'authorization':'Bearer '+token
+		}
+	}).then(res=>res.json())
+	.catch(error=>alert(error));
+	return data;
+}
+
+
 export const projectData = async (data) =>{
 	data.student_id=localStorage.getItem('id');
 	const token=localStorage.getItem('token');
@@ -32,13 +47,6 @@ export const projectData = async (data) =>{
 			'authorization':'Bearer '+token
 		}
 	}).then(res=>res.json())
-	.then(res=>{
-		if(res.message==='Project Updated'){
-			alert("Project Updated")
-		}else{
-			alert("please fill the details properly")
-		}
-	})
 	.catch(error=>alert(error))
 }
 

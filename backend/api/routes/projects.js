@@ -49,33 +49,32 @@ router.post('/',checkAuth, async (req,res,next)=>{
 });
 
 
-router.get('/:postId',checkAuth,(req,res,next)=>{
-    const id = req.params.postId;
-    console.log(id);
-    Post.findById(id)
-    .exec()
-    .then(doc=>{
-        console.log("From database",doc);
-        if(doc){
-            res.status(200).json(doc);
-        }else{
-            res.status(400).json({message: "No valuid entry Found for provided ID"});
-        }
-        
-    })
-    .catch(err=> {
-        console.log(err)
-        res.status(500).json({error:err})
-    });
+router.get('/:studentId',checkAuth,(req,res,next)=>{
+  const student_id = req.params.studentId;
+  Project.find({ "student_id":student_id })
+  .exec()
+  .then(doc=>{
+    console.log("From database",doc);
+    if(doc){
+        res.status(200).json(doc);
+    }else{
+        res.status(400).json({message: "No valuid entry Found for provided ID"});
+    }
+  })
+  .catch(err=> {
+    console.log(err)
+    res.status(500).json({error:err})
+  });
 });
 
-router.patch('/:postId',checkAuth,(req,res,next)=>{
-    const id = req.params.postId;
+
+router.patch('/:projectId',checkAuth,(req,res,next)=>{
+    const id = req.params.projectId;
     const updateOps = {};
     for(const ops of req.body){
         updateOps[ops.propName] = ops.value;
     }
-    Post.update({ _id:id }, { $set: updateOps })
+    Project.update({ _id:id }, { $set: updateOps })
     .exec()
     .then(result=>{
         console.log(result);

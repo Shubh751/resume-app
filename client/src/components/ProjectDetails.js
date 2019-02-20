@@ -13,9 +13,11 @@ export default class ProjectDetails extends Component{
 			member3:'',
 			description:'',
 			location:'',
-			company_name:''
+			company_name:'',
+			flag:false
 		}
-	}
+		this.edit = this.edit.bind(this);
+	};
 
 	handleChange = (event) =>{
 		event.preventDefault();
@@ -37,15 +39,85 @@ export default class ProjectDetails extends Component{
 		}
 		console.log("state...",data)
 		this.props.saveData(data);
+		const id = localStorage.getItem('id');
+		this.props.showData(id);
+	}
+
+	componentDidMount(){
+		const id = localStorage.getItem('id');
+		this.props.showData(id);
+	}
+
+	edit =(event)=>{
+		// event.preventDefault();
+		// this.props.editProjectData(id)
+		console.log("in edit")
 	}
 
   render(){
     return(
       <div className="ProjectDetails">
-				<div className="container container1">
-					<div className="row row1">
-							{this.props.data}
-					</div>
+				<div className="container container1 my-3">
+					<h4>Project Details</h4>
+					{
+						(this.props.data.length===0)?
+						(
+							<p>Add project</p>
+						):
+						(this.props.data.map((project,index)=>{
+							return(
+								<div key={index} className="existing_project">
+									<div className="row row1 my-2">
+										<div className="col-4 col1">
+											<p>Title :</p> 
+											<p>{project.title}</p>
+										</div>
+										<div className="col-4 col2">
+											<p>Start Date : </p>
+											<p>{project.start_date}</p>
+										</div>
+										<div className="col-4 col3">
+											<p>End Date : </p>
+											<p>{project.end_date}</p>
+										</div>
+									</div><hr color="yellow"></hr>
+									<div className="row row2 my-2">
+										<div className="col-4 col1">
+											<p>Team Members :</p> 
+											<p>{project.member1}</p>
+										</div>
+										<div className="col-4 col2">
+											<p>{project.member2}</p>
+										</div>
+										<div className="col-4 col3">
+											<p>{project.member3}</p>
+										</div>
+									</div><hr color="yellow"></hr>
+									<div className="row row3 my-2">
+										<div className="col-4 col1">
+											<p>Description :</p> 
+											<p>{project.description}</p>
+										</div>
+										<div className="col-4 col2">
+											<p>Location :</p>
+											<p>{project.location}</p>
+										</div>
+										<div className="col-4 col3">
+											<p>Company : </p>
+											<p>{project.company_name}</p>
+										</div>
+										<div>
+											<button 
+												className="btn btn-success" 
+												onClick={this.edit.bind(this,project._id)}>
+												Edit
+											</button>
+										</div>
+									</div>
+								</div>
+							);
+						})
+					)}
 				</div>
         <div className="container my-5 container2">
 					<h6>Enter Project Details</h6>

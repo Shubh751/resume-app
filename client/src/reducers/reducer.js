@@ -1,15 +1,14 @@
 const initialState = {
-    posts:[],
-    flag:""
+    Project:[]
  };
  
  const reducer = (state=initialState,action)=>
  {
     switch(action.type)
     {
-        case 'POST_ASYNC':
+        case 'PROJECT_DATA':
             state={
-                 posts: action.value
+                 Project: action.value
             }
             break;
         case 'ADD_POST_ASYNC':

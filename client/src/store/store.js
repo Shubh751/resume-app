@@ -5,11 +5,6 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas/sagas.js';
 
 const Saga = createSagaMiddleware();
-
-// const token=localStorage.getItem('token');
-// const name=localStorage.getItem('name');
-// const email=localStorage.getItem('email')
-
 const store =  createStore(reducer,applyMiddleware(Saga));
 Saga.run(rootSaga);
 
