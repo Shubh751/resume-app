@@ -1,6 +1,6 @@
-// export function show(token){
-//     return { type:'POST',token }
-// }
+export function save_Project_data(data){
+    return { type:'SAVE_PROJECT_DATA',data }
+}
 
 // export function addCom(data1){
 //     return { type: 'ADD_COMMENT', data1 }

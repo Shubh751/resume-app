@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import '../css/Login.css';
 
 class Login extends Component {
   constructor(){
@@ -46,16 +47,12 @@ class Login extends Component {
     .then(res => { 
       if(res.message==="Authentication succesful")
       {
-        let token=''
-        debugger
         return(
           localStorage.setItem('token',res.token),
+          localStorage.setItem('id',res.id),
           localStorage.setItem('name',res.name),
           localStorage.setItem('email',res.email),
-          console.log("local storage",token),
           this.setState({logged_in:true}),
-          console.log("state",this.state.logged_in),
-          // window.location.reload(),
           this.props.history.push("/home")
         )
       }
@@ -71,31 +68,35 @@ class Login extends Component {
     if(this.state.logged_in===false)
     {
       return (
-        <div className="App">
+        <div className="Login">
           <div className="container">
             <form onSubmit={this.submit}>
-              <div className="row">
+              <div className="row row1">
                 <h4>Login</h4>
               </div>
-              <div className="row">
-                Email : 
-                <input 
+              <div className="row row2">
+                <input
+                  className="mx-5 my-3"                 
                   name="email"
                   type="text"
                   onChange={this.handleChange}
+                  required
+                  placeholder="Enter Email"
                 />
               </div>
-              <div className="row">
-                Password : 
+              <div className="row row3">
                 <input
+                  className="mx-5 my-3"
                   name="password"
                   type="password"
                   onChange={this.handleChange}
+                  required
+                  placeholder="Enter Password"
                 />
               </div>
-              <div className="row">
-                <input type="submit"></input>
-                <button><Link to="/signup">SignUp</Link></button>
+              <div className="row row4">
+                <input className="mx-5 my-3 btn btn-info" type="submit" value="Login"></input>
+                <Link className="mx-1 my-3 btn btn-success" to="/signup">SignUp</Link>
               </div>
             </form>
           </div>

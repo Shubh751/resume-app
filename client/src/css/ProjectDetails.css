@@ -1,0 +1,11 @@
+.ProjectDetails > .container2 {
+    border: solid red 2px;
+}
+
+.ProjectDetails > .container2 > form > .form-group > .row2 > .col2 > input{
+    margin-top: 30px;
+}
+
+.ProjectDetails > .container2 > form > .form-group > .row2 > .col3 > input{
+    margin-top: 30px;
+}

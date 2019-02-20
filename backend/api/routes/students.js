@@ -56,6 +56,7 @@ router.post("/login",(req,res,next)=>{
                     token: token,
                     email:req.body.email,
                     name:user[0].name,
+                    id:user[0]._id
                 });
             }
             res.status(401).json({

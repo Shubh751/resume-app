@@ -1,0 +1,27 @@
+.Signup > .container{
+  width: 30%;
+  border: solid #273746 2px;
+  margin: 10% 15% 15% 35%;
+  padding: 50px;
+	text-align: center;
+	background-color: #D5D8DC;
+	border-radius: 10px;
+}
+
+.Signup > .row{
+  text-align: center;
+}
+
+.Signup > .container > input{
+	border: none;
+	text-align: center;
+	background-color: #D5D8DC;
+	border-bottom: 1px solid #ABB2B9;
+
+}
+
+
+.Signup > #link{
+	color:white;
+	text-decoration: none;
+}

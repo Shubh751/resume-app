@@ -1,0 +1,33 @@
+.Login > .container{
+  width: 30%;
+  border: solid #273746 2px;
+  margin: 10% 15% 15% 35%;
+  padding: 50px;
+  text-align: center;
+	background-color: #D5D8DC;
+	border-radius: 10px;
+	}
+	
+  .Login > .row{
+    text-align: center;
+	}
+
+  .Login > .container > form > .row > input[type="text"]{
+    border: none;
+    text-align: center;
+    background-color: #D5D8DC;
+    border-bottom: 1px solid #ABB2B9;
+  
+  }
+  .Login > .container > form > .row > input[type="password"]{
+    border: none;
+    text-align: center;
+    background-color: #D5D8DC;
+    border-bottom: 1px solid #ABB2B9;
+  
+	}
+	
+	#link{
+		color:white;
+		text-decoration: none;
+	}

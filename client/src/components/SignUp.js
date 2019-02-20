@@ -1,10 +1,8 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
-import  { connect } from 'react-redux'; 
 import Login from './Login.js';
 import { Link } from "react-router-dom";
-// import '../css/SignUp.css';
-import { student_SignUp } from '../actions/actions'
+import '../css/SignUp.css';
 class SignUp extends Component
 {
   constructor()
@@ -48,52 +46,49 @@ class SignUp extends Component
     render()
     {
       return(
-        <div id="l_form">
-          <h3 id="h4-login"><b><i>Sign-Up</i></b></h3><br></br><br></br>
-          <form onSubmit={this.submit}>
-            <label>
-            <input
-              type="text"
-              placeholder="Enter Name" 
-              name="name" 
-              onChange={this.handleChange}>
-            </input>
-            </label>
-            <br></br>
-            <br></br>
-            <label>
-            	<input
+        <div className="Signup">
+          <div className="container">
+            <h3><b><i>Sign-Up</i></b></h3>
+              <form onSubmit={this.submit} className="form-group">
+              <div className="row">
+               <input
+                className="mx-5 my-3"
+                type="text"
+                placeholder="Enter Name" 
+                name="name" 
+                onChange={this.handleChange}
+                required>
+               </input>
+              </div>
+              <div className="row">
+            	 <input
+                className="mx-5 my-3"
               	type="text"
               	placeholder="Enter Email" 
               	name="email" 
-              	onChange={this.handleChange}>
-            	</input>
-            </label>
-            <br></br>
-            <br></br>
-            <label>
-              <input
-                type="password"
-                placeholder="Enter password" 
-                name="password"
-                onChange={this.handleChange}>
-              </input>
-            </label>
-            <br></br>
-            <br></br>
-            <br></br>
-            <button type="submit">SignUp</button>&nbsp;&nbsp;&nbsp;
-            <button><Link to="/">Login</Link></button>
+              	onChange={this.handleChange}
+                required>
+            	 </input>
+              </div>
+              <div className="row">
+                <input
+                  className="mx-5 my-3"
+                  type="password"
+                  placeholder="Enter password" 
+                  name="password"
+                  onChange={this.handleChange}
+                  required>
+                </input>
+              </div>
+              <div className="row">
+                <button className="mx-5 my-3 btn btn-info" type="submit">SignUp</button>
+                <Link className="mx-1 my-3 btn btn-success"  to="/">Login</Link>
+              </div>
           </form>
         </div>
-      );
-  	}
+      </div>
+    );
+  }
 }
 
-const mapDispatchToProps = dispatch =>{
-    return{
-        signup:(data) => dispatch(student_SignUp(data))
-    }
-}
-
-export default connect(null,mapDispatchToProps)(SignUp)
+export default SignUp;
