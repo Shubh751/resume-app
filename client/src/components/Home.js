@@ -31,21 +31,6 @@ export default class Home extends Component{
     alert("submitted");
   }
 
-  projectDetails = (event) =>{
-    event.preventDefault();
-    this.setState({ child:<ProjectDetails/> })
-  }
-
-  educationDetails = (event) =>{
-    event.preventDefault();
-    this.setState({ child:<Education/> })
-  }
-
-  certificateDetails = (event) =>{
-    event.preventDefault();
-    this.setState({ child:<Certificate/> })
-  }
-
   render(){
     return(
       <div className="Home">
@@ -80,17 +65,15 @@ export default class Home extends Component{
 
                 </div>
               </div>
-              <div className="col-8 col2">
-                {this.state.child}
-              </div>
-              <div className="col-2 col3">
+              <div className="col-10 col2">
                 <div className="row row1">
                   <form onSubmit={this.explainSubmit}>
                     <div className="form-group my-2">
                       <label htmlFor="explain">Explain Your Self:</label>
-                      <textarea 
-                        className="form-control" 
-                        rows="3" 
+                      <textarea
+                        className="form-control textarea"
+                        rows="3"
+                        cols="50"
                         id="explain">
                       </textarea>
                       <input
@@ -103,21 +86,9 @@ export default class Home extends Component{
                 </div>
                 <hr></hr>
                 <div className="row row2">
-                  <button 
-                    className="Link btn" 
-                    onClick={this.projectDetails}>
-                    Project Details
-                  </button>
-                  <button 
-                    className="Link btn" 
-                    onClick={this.educationDetails}>
-                    Education
-                  </button>
-                  <button 
-                    className="Link btn"
-                    onClick={this.certificateDetails}>
-                    Certificate
-                  </button>
+                  <ProjectDetails/>
+                  <Education/>
+                  <Certificate/>
                 </div>
               </div>
             </div>

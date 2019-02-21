@@ -11,8 +11,12 @@
     background-color: rgb(245, 135, 108)
 }
 
+.Home > .App> .container-fluid > .row2 > .col2 > .row1 > form > .form-group > textarea{
+    /* border: solid red 2px; */
+}
+
 .textarea{
-    max-width: 100%;
+    width: 100%;
 }
 
 .Home > .App > .container-fluid > .row1{
