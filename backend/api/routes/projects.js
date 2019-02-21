@@ -5,8 +5,7 @@ const Project = require('../models/project');
 const checkAuth = require('../middleware/check-auth');
 
 router.get('/',checkAuth,(req,res,next)=>{
-  Post.find()
-  .select('_id title tags comments')
+  Project.find()
   .exec()
   .then(docs=>{
     console.log(docs)
@@ -89,18 +88,18 @@ router.patch('/:projectId',checkAuth,(req,res,next)=>{
 });
 
 
-router.delete('/:postId',checkAuth,(req,res,next)=>{
-    const id = req.params.postId;
-    Post.remove({ _id:id }).exec()
-    .then(result=>{
-        res.status(200).json(result);
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({
-            error:err
-        });
-    });
-});
+// router.delete('/:postId',checkAuth,(req,res,next)=>{
+//     const id = req.params.postId;
+//     Post.remove({ _id:id }).exec()
+//     .then(result=>{
+//         res.status(200).json(result);
+//     }).catch(err=>{
+//         console.log(err);
+//         res.status(500).json({
+//             error:err
+//         });
+//     });
+// });
 
 
 module.exports = router;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/ProjectDetails.css';
-import EditProject from './EditProject';
+import EditProject from '../container/EditProject';
 import AddProject from '../container/AddProject';
 
 export default class ProjectDetails extends Component{
@@ -20,7 +20,6 @@ export default class ProjectDetails extends Component{
 			child:'',
 			editProject:''
 		}
-		this.edit = this.edit.bind(this);
 	};
 	
 
@@ -29,20 +28,6 @@ export default class ProjectDetails extends Component{
 		this.props.showData(id);
 	}
 
-	add = () => {
-		this.setState({ child:<AddProject demo={this.demo.bind(this)}/>})
-	}
-	
-	demo=()=>{
-		this.setState({ child:'' })
-	}
-
-	edit =(id)=>{
-		console.log("in edit",id)
-		this.setState({
-      editProject:<EditProject/>
-    });
-	}
 
   render(){
     return(
@@ -54,26 +39,26 @@ export default class ProjectDetails extends Component{
 						(
 							<p>Add a project</p>
 						):
-						(this.props.data.map((project,index)=>{
+						(this.props.data.length && this.props.data.map((project,index)=>{
 							return(
-								<div key={index} className="existing_project">
-									<div className="row row1 my-2">
+								<div key={index} className="container-fluid details my-3">
+									<div className="row row1">
 										<div className="col-4 col1">
-											<p>Title :</p> 
+											<b>Title :</b>
 											<p>{project.title}</p>
 										</div>
 										<div className="col-4 col2">
-											<p>Start Date : </p>
+											<b>Start Date : </b>
 											<p>{project.start_date}</p>
 										</div>
 										<div className="col-4 col3">
-											<p>End Date : </p>
+											<b>End Date : </b>
 											<p>{project.end_date}</p>
 										</div>
 									</div><hr color="yellow"></hr>
 									<div className="row row2 my-2">
 										<div className="col-4 col1">
-											<p>Team Members :</p> 
+											<b>Team Members :</b> 
 											<p>{project.member1}</p>
 										</div>
 										<div className="col-4 col2">
@@ -85,27 +70,42 @@ export default class ProjectDetails extends Component{
 									</div><hr color="yellow"></hr>
 									<div className="row row3 my-2">
 										<div className="col-4 col1">
-											<p>Description :</p> 
+											<b>Description :</b> 
 											<p>{project.description}</p>
 										</div>
 										<div className="col-4 col2">
-											<p>Location :</p>
+											<b>Location :</b>
 											<p>{project.location}</p>
 										</div>
 										<div className="col-4 col3">
-											<p>Company : </p>
+											<b>Company : </b>
 											<p>{project.company_name}</p>
 										</div>
 									</div>
-									<div className="row ro4">
-											<button 
-												className="btn btn-success mx-2 my-2"
-												onClick={this.edit.bind(this,project._id)}>
-												Edit
-											</button>
-									</div>
-									<div className="row row5">
-										{this.state.editProject}
+									<div className="row row4">
+										{/* Dialog for Add Project */}
+										<button type="button" className="btn btn-primary " data-toggle="modal" data-target="#editProject">
+  										Edit
+										</button>
+										<div className="modal fade" id="editProject" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  						<div className="modal-dialog" role="document">
+				    						<div className="modal-content">
+				      						<div className="modal-header">
+				        						<div className="modal-title" id="exampleModalLabel">Enter Details</div>
+				        							<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+				          							<span aria-hidden="true">&times;</span>
+				        							</button>
+				      							</div>
+				      							<div className="modal-body">
+				        							<EditProject id={project._id}/>
+				      							</div>
+				      							<div className="modal-footer">
+				        							<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+				        							<button type="button" className="btn btn-primary">Save changes</button>
+				      							</div>
+				    							</div>
+				  							</div>
+										</div>
 									</div>
 								</div>
 							);
@@ -113,13 +113,29 @@ export default class ProjectDetails extends Component{
 					)
 					}
 				</div>
-						<button 
-								className="btn btn-success my-2"
-								onClick={this.add}
-								type="button">
-								Add project
-							</button>
-							{this.state.child}
+				{/* Dialog for Add Project */}
+				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addProject">
+  				Add Project
+				</button>
+				<div className="modal fade" id="addProject" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div className="modal-dialog" role="document">
+				    <div className="modal-content">
+				      <div className="modal-header">
+				        <div className="modal-title" id="exampleModalLabel">Modal title</div>
+				        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div className="modal-body">
+				        <AddProject/>
+				      </div>
+				      <div className="modal-footer">
+				        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+				        <button type="button" className="btn btn-primary">Save changes</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
       </div>
     );
   }

@@ -1,13 +1,45 @@
 import React from 'react';
 
 export default class EditProject extends React.Component {
+	constructor(){
+		super();
+		this.state={
+			title:'',
+			start_date:'',
+			end_date:'',
+			member1:'',
+			member2:'',
+			member3:'',
+			description:'',
+			location:'',
+			company_name:'',
+		}
+	}
+	handleChange = (event) =>{
+		this.setState({ [event.target.name]: event.target.value })
+	}
+
+	edit = (event) =>{
+		event.preventDefault();
+		const project_id=this.props.id;
+		const data={
+			title:this.state.title,
+			start_date:this.state.start_date,
+			end_date:this.state.end_date,
+			member1:this.state.member1,
+			member2:this.state.member2,
+			member3:this.state.member3,
+			description:this.state.description,
+			location:this.state.location,
+			company_name:this.state.company_name
+		}
+		this.props.editProject(project_id,data);
+		this.props.showData(localStorage.getItem('id'));
+	}
   render() {
     return (
       <div className="EditProject">
-				<h4>
-					Enter Details
-				</h4>
-				<form onSubmit={this.save}>
+				<form onSubmit={this.edit}>
 						<div className="form-group">
 							<div className="row row1">
 								<div className="col-4 col1">

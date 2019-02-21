@@ -22,54 +22,54 @@ router.get('/',(req,res,next)=>{
 
 
 router.post("/login",(req,res,next)=>{
-    Student.find({ email: req.body.email })
-    .exec()
-    .then(user=>{
-        if(user.length <1)
+  Student.find({ email: req.body.email })
+  .exec()
+  .then(user=>{
+    if(user.length <1)
+    {
+      return res.status(401).json({
+        message: "1 .Authntication failed"
+      });
+    }
+    bcrypt.compare(req.body.password, user[0].password, (err,result)=>{
+    if(err)
+    {
+      return res.status(401).json({
+      	message: "2 .Authntication failed"
+    	});
+    }
+    if(result)
+    {
+      console.log(user[0].name)
+        const token = jwt.sign(
         {
-            return res.status(401).json({
-                message: "1 .Authntication failed"
-            });
+            email: user[0].email,
+            userId: user[0]._id
+        }, 
+        process.env.JWT_KEY,
+        {
+            expiresIn:"1d"
         }
-        bcrypt.compare(req.body.password, user[0].password, (err,result)=>{
-            if(err)
-            {
-                return res.status(401).json({
-                    message: "2 .Authntication failed"
-                });
-            }
-            if(result)
-            {
-                console.log(user[0].name)
-                    const token = jwt.sign(
-                    {
-                        email: user[0].email,
-                        userId: user[0]._id
-                    }, 
-                    process.env.JWT_KEY,
-                    {
-                        expiresIn:"1h"
-                    }
-                    );
-                return res.status(200).json({
-                    message: "Authentication succesful",
-                    token: token,
-                    email:req.body.email,
-                    name:user[0].name,
-                    id:user[0]._id
-                });
-            }
-            res.status(401).json({
-                message: "3. Authntication failed"
-            });
-        });
-    })
-    .catch(err=>{
-        console.log(err);
-        res.status(500).json({
-            error:err
-        })
+        );
+      return res.status(200).json({
+        message: "Authentication succesful",
+        token: token,
+        email:req.body.email,
+        name:user[0].name,
+        id:user[0]._id
+      });
+    }
+    res.status(401).json({
+        message: "3. Authntication failed"
     });
+  	});
+  })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).json({
+        error:err
+    })
+  });
 })
 
 

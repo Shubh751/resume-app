@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import '../css/Home.css';
-import Profile from './Profile';
-import Logout from './Logout';
 import ProjectDetails from '../container/ProjectDetails';
 import Education from './Education';
 import  Certificate  from './Certificate';
@@ -16,14 +14,14 @@ export default class Home extends Component{
     child:null
   }
   };
-  renderChild = () =>{
-    this.setState({ child:<Profile/> })
-  }
+  
   reset = () =>{
     this.setState({ child:null })
   }
   logout =() =>{
-    this.setState({ child:<Logout/> })
+    // this.setState({ child:<Logout/> })
+    localStorage.clear();
+    this.props.history.push("/");
   }
 
   explainSubmit = (event) =>{
@@ -37,7 +35,7 @@ export default class Home extends Component{
         <div className="App">
           <div className="container-fluid">
             <div className="row row1">
-              <div className="col-2">
+              <div className="col-9">
                 <h5 className="my-3">Resume Application</h5>
               </div>
               <div className="col-1">
@@ -47,10 +45,7 @@ export default class Home extends Component{
                   <button className="Link btn my-2" onClick={this.renderChild}><b>Profile</b></button>
               </div>
               <div className="col-1">
-                  <Link className="Link btn my-2" to='/logout' onClick={this.logout}><b>Logout</b></Link>
-              </div>
-              <div className="col-9">
-
+                  <button className="Link btn my-2" onClick={this.logout}><b>Logout</b></button>
               </div>
             </div>
             <div className="row row2">
@@ -67,28 +62,33 @@ export default class Home extends Component{
               </div>
               <div className="col-10 col2">
                 <div className="row row1">
-                  <form onSubmit={this.explainSubmit}>
-                    <div className="form-group my-2">
-                      <label htmlFor="explain">Explain Your Self:</label>
-                      <textarea
-                        className="form-control textarea"
-                        rows="3"
-                        cols="50"
-                        id="explain">
-                      </textarea>
-                      <input
-                        className="btn btn-info"
-                        type="submit"
-                        value="Save">
-                      </input>
-                    </div>
-                  </form>
+                  <div className="col-10">
+                   <form onSubmit={this.explainSubmit}>
+                     <div className="form-group my-4">
+                       <label htmlFor="explain"><h4>Explain Your Self:</h4></label>
+                       <textarea
+                         className="form-control textarea"
+                         rows="3"
+                         cols="50"
+                         id="explain">
+                       </textarea>
+                       <input
+                         className="btn btn-info"
+                         type="submit"
+                         value="Save">
+                       </input>
+                     </div>
+                   </form>
+                  </div>
                 </div>
-                <hr></hr>
                 <div className="row row2">
-                  <ProjectDetails/>
-                  <Education/>
-                  <Certificate/>
+                  <div className="col-10"><ProjectDetails/></div>
+                </div>
+                <div className="row row3">
+                  <div className="col-10"><Education/></div>
+                </div>
+                <div className="row row4">
+                  <div className="col-10"><Certificate/></div>
                 </div>
               </div>
             </div>

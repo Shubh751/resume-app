@@ -6,6 +6,9 @@ export function showProject(id){
     return { type:'SHOW_PROJECT',id}
 }
 
+export function edit_project(project_id,data){
+    return { type:'EDIT_PROJECT', project_id,data }
+}
 
 
 // export function addCom(data1){

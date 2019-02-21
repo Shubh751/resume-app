@@ -1,23 +1,9 @@
-.ProjectDetails > .container2 {
-    border: solid red 2px;
+.ProjectDetails {
+  border: solid blue 1px;
 }
 
-.ProjectDetails > .container2 > form > .form-group > .row2 > .col2 > input{
-    margin-top: 30px;
-}
-
-.ProjectDetails > .container2 > form > .form-group > .row2 > .col3 > input{
-    margin-top: 30px;
-}
-
-.ProjectDetails > .container1 > .existing_project >.row2 > .col2 {
-    margin-top: 34px;
-}
-
-.ProjectDetails > .container1 > .existing_project > .row2 > .col3 {
-    margin-top: 34px;
-}
-
-.ProjectDetails > .container1{
-    border: solid blue 1px;
-}
+/* .details{
+  border:none;
+  border-radius: 20px;
+  background-color: rgb(216, 209, 209);
+} */
