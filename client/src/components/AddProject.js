@@ -13,6 +13,7 @@ export default class AddProject extends Component
 			description:'',
 			location:'',
 			company_name:'',
+			added:''
 		}
 	};
 
@@ -27,13 +28,13 @@ export default class AddProject extends Component
 			member3:this.state.member3,
 			description:this.state.description,
 			location:this.state.location,
-			company_name:this.state.company_name
+			company_name:this.state.company_name,
 		}
 		console.log("state...",data)
-		this.props.saveData(data);
+		this.props.saveProjectData(data);
+		this.setState({ added:"Project Added" })
 		const id = localStorage.getItem('id');
-		this.props.showData(id);
-		this.props.demo()
+		this.props.showProjectData(id);
 	}
 
 	handleChange = (event) =>{
@@ -137,6 +138,7 @@ export default class AddProject extends Component
 							</div>
 							<div className="row row4">
 								<input type="submit" className="btn btn-info mx-3 my-2" value="save"></input>
+								<p className="my-3">{this.state.added}</p>
 							</div>
 						</div>
 					</form>

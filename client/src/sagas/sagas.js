@@ -1,9 +1,12 @@
 import { takeLatest,all,call,put} from 'redux-saga/effects';
 import { 
 	student_sign_Up,
-	project_Data,
+	save_project_Data,
   project,
-  edit_project_data
+  edit_project_data,
+  show_education_data,
+  edit_education_data,
+  add_education_data
 } from '../api/api';
 
 
@@ -15,20 +18,31 @@ function* studentSignUp(action)
 }
 
 function* showProjectData(action){
-	const data = yield call(project,action.id)
-	console.log("data from database: ",data)
+	const data = yield call(project,action.student_id)
 	yield put({type:'PROJECT_DATA',value:data})
 }
 
 function* saveProjectData(action){
-  yield console.log("data....",action.data)
-  yield call(project_Data,action.data)
+  yield call(save_project_Data,action.data)
 }
 
 function* editProjectData(action){
-  yield console.log("project id",action.project_id,action.data);
-  yield call(edit_project_data,action.project_id,action.data)
+  yield call(edit_project_data,action.project_id,action.data);
 }
+
+function* showEducationData(action){
+  const data = yield call(show_education_data,action.student_id);
+  yield put({type:'EDUCATION_DATA',value:data})
+}
+
+function* editEducationData(action){
+  yield call( edit_education_data, action.education_id, action.data)
+}
+
+function* addEducationData(action){
+  yield call( add_education_data, action.data)
+}
+
 
 export default function* rootSaga()
 {
@@ -38,6 +52,10 @@ export default function* rootSaga()
     yield takeLatest('SHOW_PROJECT',showProjectData),
     yield takeLatest('EDIT_PROJECT',editProjectData),
     yield takeLatest('STUDENT_SIGNUP',studentSignUp),
-    yield takeLatest('SAVE_PROJECT_DATA',saveProjectData)
+    yield takeLatest('SAVE_PROJECT_DATA',saveProjectData),
+    yield takeLatest('SHOW_EDUCATION_DATA',showEducationData),
+    yield takeLatest('EDIT_EDUCATION_DATA',editEducationData),
+    yield takeLatest('ADD_EDUCATION_DATA',addEducationData),
+
   ])
 }

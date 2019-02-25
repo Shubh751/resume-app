@@ -1,12 +1,12 @@
 import AddProject from '../components/AddProject';
-import { save_Project_data, showProject } from '../actions/actions';
+import { save_Project_data, show_project } from '../actions/actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({ data: state.Project });
 const mapDispatchToProps = dispatch => {
     return{
-      showData:(id)=> dispatch(showProject(id)),
-      saveData:(data) => dispatch(save_Project_data(data))
+      showProjectData:(id)=> dispatch(show_project(id)),
+      saveProjectData:(data) => dispatch(save_Project_data(data))
     }
   }
 

@@ -22,14 +22,19 @@ export default class ProjectDetails extends Component{
 		}
 	};
 	
-
 	componentDidMount(){
-		const id = localStorage.getItem('id');
-		this.props.showData(id);
+		console.log("in componentdidmount of projectdetails");
+		const student_id = localStorage.getItem('id');
+		this.props.showProjectData(student_id);
 	}
 
-
   render(){
+		const style={
+			styles:{
+				width:'100%'
+			}
+		}
+		console.log(this.props.data)
     return(
       <div className="ProjectDetails">
 				<div className="container-fluid container1 my-3">
@@ -41,7 +46,7 @@ export default class ProjectDetails extends Component{
 						):
 						(this.props.data.length && this.props.data.map((project,index)=>{
 							return(
-								<div key={index} className="container-fluid details my-3">
+								<div key={index} className="container-fluid project_details my-3">
 									<div className="row row1">
 										<div className="col-4 col1">
 											<b>Title :</b>
@@ -55,7 +60,8 @@ export default class ProjectDetails extends Component{
 											<b>End Date : </b>
 											<p>{project.end_date}</p>
 										</div>
-									</div><hr color="yellow"></hr>
+									</div>
+									<hr color="yellow"></hr>
 									<div className="row row2 my-2">
 										<div className="col-4 col1">
 											<b>Team Members :</b> 
@@ -67,7 +73,8 @@ export default class ProjectDetails extends Component{
 										<div className="col-4 col3">
 											<p>{project.member3}</p>
 										</div>
-									</div><hr color="yellow"></hr>
+									</div>
+									<hr color="yellow"></hr>
 									<div className="row row3 my-2">
 										<div className="col-4 col1">
 											<b>Description :</b> 
@@ -88,8 +95,8 @@ export default class ProjectDetails extends Component{
   										Edit
 										</button>
 										<div className="modal fade" id="editProject" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				  						<div className="modal-dialog" role="document">
-				    						<div className="modal-content">
+				  						<div className="modal-dialog modal-dialog-centered" role="document" >
+				    						<div className="modal-content"  style={style.styles}>
 				      						<div className="modal-header">
 				        						<div className="modal-title" id="exampleModalLabel">Enter Details</div>
 				        							<button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -98,7 +105,7 @@ export default class ProjectDetails extends Component{
 				      							</div>
 				      							<div className="modal-body">
 				        							<EditProject id={project._id}/>
-				      							</div>
+														</div>
 				      							<div className="modal-footer">
 				        							<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
 				        							<button type="button" className="btn btn-primary">Save changes</button>

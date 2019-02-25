@@ -2,14 +2,25 @@ export function save_Project_data(data){
     return { type:'SAVE_PROJECT_DATA',data }
 }
 
-export function showProject(id){
-    return { type:'SHOW_PROJECT',id}
+export function show_project(student_id){
+    return { type:'SHOW_PROJECT',student_id}
 }
 
 export function edit_project(project_id,data){
     return { type:'EDIT_PROJECT', project_id,data }
 }
 
+export function show_education(student_id){
+    return { type:'SHOW_EDUCATION_DATA', student_id }
+}
+
+export function edit_Education_data(education_id,data){
+    return { type:'EDIT_EDUCATION_DATA', education_id,data }
+}
+
+export function add_Education_data(data){
+    return { type:'ADD_EDUCATION_DATA',data }
+}
 
 // export function addCom(data1){
 //     return { type: 'ADD_COMMENT', data1 }

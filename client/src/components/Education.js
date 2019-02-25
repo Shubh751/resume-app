@@ -1,63 +1,130 @@
 import React, { Component } from 'react';
-// import '../css/.css';
+import AddEducation from '../container/AddEducation';
+import EditEducation from '../container/EditEducation';
+import '../css/Education.css';
 
 export default class Education extends Component{
+	constructor(props){
+		super(props);
+		this.state={
+			isLoading: false,
+			education: []
+		}
+	};
+	
+	componentWillMount(){
+		console.log("in componentdid-mount of education");
+		const student_id=localStorage.getItem('id');
+		this.props.showEducationData(student_id);
+	}
+
+	componentWillReceiveProps(nextProps){
+		if (this.props.data !== nextProps.data) {
+			this.setState({ 
+				isLoading: true,
+				education: nextProps.data
+			})
+		}
+	}
+
   render(){
+		const style={
+			styles:{
+				width:'100%'
+			}
+		}
+		console.log("data in education...... ",this.props.data)
     return(
-      <div className="Education">
-        <div className="container my-5">
-					<h6>Enter Qualification Details</h6>
-					<form>
-						<div className="form-group">
-							<div className="row row1 my-3">
-								<div className="col-4 col1">
-									<label>Qualification name : </label>
-									<input
-										className="form-control"
-										type="text"
-										name="q-name">
-									</input>
+			<div className="Education my-3">
+				<div className="container-fluid container1 my-3">
+					<h4>Education Details</h4>
+					{
+						(this.props.data.length===0)?
+						(
+							<p>Add Educational Details</p>
+						):
+						(this.state.isLoading && this.props.data.length && this.props.data.map((education,index)=>{
+							return(
+								<div key={index} className="container-fluid education_details my-3">
+									<div className="row row1">
+										<div className="col-4 col1">
+											<b>Qualification Name :</b>
+											<p>{education.qualification}</p>
+										</div>
+										<div className="col-4 col2">
+											<b>Start Date : </b>
+											<p>{education.start_date}</p>
+										</div>
+										<div className="col-4 col3">
+											<b>End Date : </b>
+											<p>{education.end_date}</p>
+										</div>
+									</div>
+									<hr color="yellow"></hr>
+									<div className="row row2 my-2">
+										<div className="col-4 col1">
+											<b>Location :</b> 
+											<p>{education.location}</p>
+										</div>
+										<div className="col-4 col2">
+											<b>Institute Name :</b>
+											<p>{education.institute_name}</p>
+										</div>
+									</div>
+									<hr color="yellow"></hr>
+									<div className="row row3">
+										{/* Dialog for Edit Educational Details */}
+										<button type="button" className="btn btn-primary " data-toggle="modal" data-target="#editEducation">
+  										Edit
+										</button>
+										<div className="modal fade" id="editEducation" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  						<div className="modal-dialog modal-dialog-centered" role="document" >
+				    						<div className="modal-content"  style={style.styles}>
+				      						<div className="modal-header">
+				        						<div className="modal-title" id="exampleModalLabel">Enter Details</div>
+				        							<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+				          							<span aria-hidden="true">&times;</span>
+				        							</button>
+				      							</div>
+				      							<div className="modal-body">
+				        							<EditEducation education_id={education._id}/>
+														</div>
+				      							<div className="modal-footer">
+				        							<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+				        							<button type="button" className="btn btn-primary">Save changes</button>
+				      							</div>
+				    							</div>
+				  							</div>
+										</div>
+									</div>
 								</div>
-								<div className="col-4 col2">
-									<label>Start Date : </label>
-									<input
-										className="form-control"
-										type="date"
-										name="start-date">
-									</input>
-								</div>
-								<div className="col-4 col3">
-									<label>End Date : </label>
-									<input
-										className="form-control"
-										type="date"
-										name="end-date">
-									</input>
-								</div>
-							</div>
-							<div className="row row2 my-3">
-								<div className="col-4 col1">
-									<label>Location :</label>
-									<input
-										className="form-control"
-										name="location"
-										type="text">
-									</input>
-								</div>
-								<div className="col-4 col2">
-								<label>Institute Name : </label>
-									<input
-										className="form-control"
-										name="institute"
-										type="text">
-									</input>
-								</div>
-							</div>
-							<div className="row row3">
-								<input type="submit" className="btn btn-info mx-3 my-2" value="save"></input>
-							</div>
-						</div>
-					</form>
+							);
+						})
+						)
+					}
+				</div>
+				{/* Dialog for Add Project */}
+				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addEducation">
+  				Add Education
+				</button>
+				<div className="modal fade" id="addEducation" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div className="modal-dialog" role="document">
+				    <div className="modal-content">
+				      <div className="modal-header">
+				        <div className="modal-title" id="exampleModalLabel">Modal title</div>
+				        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div className="modal-body">
+				        <AddEducation/>
+				      </div>
+				      <div className="modal-footer">
+				        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+				        <button type="button" className="btn btn-primary">Save changes</button>
+				      </div>
+				    </div>
+				  </div>
 				</div>
       </div>
     );

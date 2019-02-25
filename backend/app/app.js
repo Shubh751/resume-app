@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const projectRoutes  =require('../api/routes/projects');
-// const userRoutes = require('./api/routes/teachers');
+const educationRoutes = require('../api/routes/educations');
 const studentRoutes = require('../api/routes/students');
 
 
@@ -17,7 +17,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 
-// app.use('/teacher',userRoutes);
+app.use('/education',educationRoutes);
 app.use('/student',studentRoutes);
 app.use('/project',projectRoutes);
 

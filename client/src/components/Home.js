@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import '../css/Home.css';
 import ProjectDetails from '../container/ProjectDetails';
-import Education from './Education';
+import Education from '../container/Education';
 import  Certificate  from './Certificate';
 
 

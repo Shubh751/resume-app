@@ -5,15 +5,11 @@ export default class EditProject extends React.Component {
 	constructor(){
 		super();
 		this.state={
-			title:'',
+			qualification:'',
 			start_date:'',
 			end_date:'',
-			member1:'',
-			member2:'',
-			member3:'',
-			description:'',
 			location:'',
-			company_name:'',
+			institute_name:'',
 		}
 	}
 	handleChange = (event) =>{
@@ -22,35 +18,30 @@ export default class EditProject extends React.Component {
 
 	edit = async(event) => {
 		event.preventDefault();
-		const project_id=this.props.id;
+		const education_id=this.props.education_id;
 		const data={
-			title:this.state.title,
+			qualification:this.state.qualification,
 			start_date:this.state.start_date,
 			end_date:this.state.end_date,
-			member1:this.state.member1,
-			member2:this.state.member2,
-			member3:this.state.member3,
-			description:this.state.description,
 			location:this.state.location,
-			company_name:this.state.company_name
+			institute_name:this.state.institute_name
 		}
-		await this.props.editProjectData(project_id,data);
-		const id= await localStorage.getItem('id');
-		await this.props.showProjectData(id);
+		await this.props.editEducationData(education_id,data);
+		const student_id= await localStorage.getItem('id');
+		await this.props.showEducationData(student_id);
 	}
   render() {
-		
     return (
-      <div className="EditProject">
+      <div className="EditEducation">
 				<form onSubmit={this.edit}>
 						<div className="form-group">
 							<div className="row row1">
 								<div className="col-4 col1">
-									<label>Title : </label>
+									<label>Qualification : </label>
 										<input
 											className="form-control"
 											type="text"
-											name="title"
+											name="qualification"
 											onChange={this.handleChange}>
 										</input>
 								</div>
@@ -75,64 +66,25 @@ export default class EditProject extends React.Component {
 							</div>
 							<div className="row row2">
 								<div className="col-4 col1">
-									<label>Team Members Name :</label>
+									<label>Location :</label>
 									<input
 										className="form-control"
-										name="member1"
+										name="location"
 										type="text"
-										placeholder="1."
 										onChange={this.handleChange}>
 									</input>
 								</div>
 								<div className="col-4 col2">
+									<label>Institute :</label>
 									<input
 										className="form-control"
-										name="member2"
+										name="institute_name"
 										type="text"
-										placeholder="2."
-										onChange={this.handleChange}>
-									</input>
-								</div>
-								<div className="col-4 col3">
-									<input
-										className="form-control"
-										name="member3"
-										type="text"
-										placeholder="3."
 										onChange={this.handleChange}>
 									</input>
 								</div>
 							</div>
 							<div className="row row3">
-								<div className="col-4 col1">
-									<label htmlFor="description">Description : </label>
-									<textarea
-										className="form-control"
-										id="description"
-										name="description"
-										onChange={this.handleChange}>
-									</textarea>
-								</div>
-								<div className="col-4 col2">
-									<label>Location : </label>
-									<input
-										className="form-control"
-										type="text"
-										name="location"
-										onChange={this.handleChange}>
-									</input>
-								</div>
-								<div className="col-4 col3">
-									<label>Company Name : </label>
-									<input
-										className="form-control"
-										type="text"
-										name="company_name"
-										onChange={this.handleChange}>
-									</input>
-								</div>
-							</div>
-							<div className="row row4">
 								<input type="submit" className="btn btn-info mx-3 my-2" value="save"></input>
 							</div>
 						</div>

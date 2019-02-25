@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Project = require('../models/project');
+const Education = require('../models/education');
 const checkAuth = require('../middleware/check-auth');
 
-router.get('/',checkAuth,(req,res,next)=>{
-  Project.find()
+router.get('/',checkAuth,async(req,res,next)=>{
+  await Education.find()
   .exec()
   .then(docs=>{
     console.log(docs)
@@ -20,24 +20,20 @@ router.get('/',checkAuth,(req,res,next)=>{
 
 
 router.post('/',checkAuth, async (req,res,next)=>{
-	const project = new Project({
+	const education = new Education({
     _id: new mongoose.Types.ObjectId(),
-    title: req.body.title,
+    qualification: req.body.qualification,
     start_date:req.body.start_date,
 		end_date:req.body.end_date,
-		member1:req.body.member1,
-		member2:req.body.member2,
-		member3:req.body.member3,
-		description:req.body.description,
 		location:req.body.location,
-		company_name:req.body.company_name,
+		institute_name:req.body.institute_name,
 		student_id:req.body.student_id
 	});
-  await project.save().then(result=>{
+  await education.save().then(result=>{
     console.log(result);
     res.status(201).json({
-      message:'Project Updated',
-      createdProject : result
+      message:'Education Created',
+      createdEducation : result
     });
     }).catch(err=> {
       console.log(err);
@@ -48,9 +44,9 @@ router.post('/',checkAuth, async (req,res,next)=>{
 });
 
 
-router.get('/:studentId',checkAuth,(req,res,next)=>{
+router.get('/:studentId',checkAuth,async(req,res,next)=>{
   const student_id = req.params.studentId;
-  Project.find({ "student_id":student_id })
+  await Education.find({ "student_id":student_id })
   .exec()
   .then(doc=>{
     console.log("From database",doc);
@@ -67,25 +63,21 @@ router.get('/:studentId',checkAuth,(req,res,next)=>{
 });
 
 
-router.patch('/:projectId',checkAuth,(req,res,next)=>{
-  const id = req.params.projectId;
+router.patch('/:educationId',checkAuth,(req,res,next)=>{
+  console.log("in education patch")
+  const id = req.params.educationId;
     // const updateOps = {};
     // for(const ops of req.body){
     //     updateOps[ops.propName] = ops.value;
     // }
-    console.log("title",req.body.title)
-    Project.update({ _id:id }, 
+    Education.update({ _id:id }, 
       { 
         $set:{
-          "title":req.body.title,
+          "qualification":req.body.qualification,
           "start_date":req.body.start_date,
           "end_date":req.body.end_date,
-          "member1":req.body.member1,
-          "member2":req.body.member2,
-          "member3":req.body.member3,
-          "description":req.body.description,
           "location":req.body.location,
-          "company_name":req.body.company_name,
+          "institute_name":req.body.institute_name,
         }
       }
     )

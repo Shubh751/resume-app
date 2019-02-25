@@ -1,29 +1,26 @@
 const initialState = {
-    Project:[]
+  Project:[],
+  Education:[]
  };
  
  const reducer = (state=initialState,action)=>
  {
-    switch(action.type)
-    {
-        case 'PROJECT_DATA':
-            state={
-                 Project: action.value
-            }
-            break;
-        case 'ADD_POST_ASYNC':
-             state={
-                 posts:[...state.posts,action.value]
-             }
-             break;
-        case 'COMPLETE':
-             state={
-                 posts:[...state.posts],
-                 flag:action.value
-             }
-             break;
-        default:
-     }
-    return state;
+  switch(action.type)
+  {
+		case 'PROJECT_DATA':
+		console.log("in project-reducer",action.value)
+        state={...state,
+          Project: action.value
+        }
+        break;
+    case 'EDUCATION_DATA':
+    console.log("in education-reducer",action.value)
+      state={...state,
+        Education: action.value
+      }
+      break;
+    default:
+  }
+  return state;
  }
  export default reducer;
