@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const projectRoutes  =require('../api/routes/projects');
 const educationRoutes = require('../api/routes/educations');
 const studentRoutes = require('../api/routes/students');
+const explainRoutes = require('../api/routes/explains');
+
 
 
 mongoose.connect(
@@ -20,6 +22,8 @@ app.use(express.json());
 app.use('/education',educationRoutes);
 app.use('/student',studentRoutes);
 app.use('/project',projectRoutes);
+app.use('/explain',explainRoutes);
+
 
 app.use((req,res,next)=>
 {

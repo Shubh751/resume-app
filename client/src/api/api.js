@@ -99,13 +99,13 @@ export const edit_education_data = async (education_id,data) =>{
 		}
 	}
 	await axios.patch(url,
-		{
-			"qualification":data.qualification,
-			"start_date":data.start_date,
-			"end_date":data.end_date,
-			"location":data.location,
-			"institute_name":data.institute_name
-		},config);
+	{
+		"qualification":data.qualification,
+		"start_date":data.start_date,
+		"end_date":data.end_date,
+		"location":data.location,
+		"institute_name":data.institute_name
+	},config);
 }
 
 export const add_education_data = async (data) =>{
@@ -120,4 +120,45 @@ export const add_education_data = async (data) =>{
 		}
 	}).then(res=>res.json())
 	.catch(error=>alert(error))
+}
+
+export const save_explain_data = async (data) =>{
+	const token=localStorage.getItem('token');
+	await fetch("/explain",{
+		method:'POST',
+		body:JSON.stringify(data),
+		headers:{
+			'Content-Type':'application/json',
+			'authorization':'Bearer '+token
+		}
+	}).then(res=>res.json())
+	.catch(error=>alert(error))
+}
+
+export const show_explain_data = async (student_id) =>{
+	const token=localStorage.getItem('token');
+	const data = await fetch("/explain",{
+		method:'GET',
+		headers:{
+			'Content-Type':'application/json',
+			'authorization':'Bearer '+token
+		}
+	}).then(res=>res.json())
+	.catch(error=>alert(error))
+	return data;
+}
+
+export const edit_explain_data = async (explain,explain_id) =>{
+	const token = localStorage.getItem('token');
+	const url="/explain/"+explain_id;
+	let config={
+		headers:{
+		'Content-Type':'application/json',
+		'authorization':'Bearer '+token
+		}
+	}
+	await axios.patch(url,
+		{
+			"explain":explain
+		},config);
 }

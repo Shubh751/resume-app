@@ -4,29 +4,25 @@ import '../css/Home.css';
 import ProjectDetails from '../container/ProjectDetails';
 import Education from '../container/Education';
 import  Certificate  from './Certificate';
+import Explain from '../container/Explain';
 
 
 export default class Home extends Component{
   constructor(){
     super();
-
-  this.state={
-    child:null
-  }
+      this.state={
+        child:null,
+      }
   };
   
   reset = () =>{
     this.setState({ child:null })
   }
+
   logout =() =>{
     // this.setState({ child:<Logout/> })
     localStorage.clear();
     this.props.history.push("/");
-  }
-
-  explainSubmit = (event) =>{
-    event.preventDefault();
-    alert("submitted");
   }
 
   render(){
@@ -63,22 +59,7 @@ export default class Home extends Component{
               <div className="col-10 col2">
                 <div className="row row1">
                   <div className="col-10">
-                   <form onSubmit={this.explainSubmit}>
-                     <div className="form-group my-4">
-                       <label htmlFor="explain"><h4>Explain Your Self:</h4></label>
-                       <textarea
-                         className="form-control textarea"
-                         rows="3"
-                         cols="50"
-                         id="explain">
-                       </textarea>
-                       <input
-                         className="btn btn-info"
-                         type="submit"
-                         value="Save">
-                       </input>
-                     </div>
-                   </form>
+                   <Explain/>
                   </div>
                 </div>
                 <div className="row row2">

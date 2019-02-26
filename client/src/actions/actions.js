@@ -22,6 +22,18 @@ export function add_Education_data(data){
     return { type:'ADD_EDUCATION_DATA',data }
 }
 
+export function save_explain(data){
+    return { type:'SAVE_EXPLAIN_DATA',data }
+}
+
+export function show_explain(student_id){
+    return { type:'SHOW_EXPLAIN_DATA',student_id }
+}
+
+export function edit_explain(explain,explain_id){
+    return { type:'EDIT_EXPLAIN_DATA',explain,explain_id }
+}
+
 // export function addCom(data1){
 //     return { type: 'ADD_COMMENT', data1 }
 // }
