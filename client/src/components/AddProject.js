@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { GoogleComponent } from 'react-google-location' 
+
+const API_KEY = "AIzaSyDBBVy8dGwJhjhWe-3uX0ck1Jcw2t4wWrU"
+
 export default class AddProject extends Component
 {
 	constructor(){
@@ -13,7 +17,8 @@ export default class AddProject extends Component
 			description:'',
 			location:'',
 			company_name:'',
-			added:''
+			added:'',
+			place: null,
 		}
 	};
 
@@ -119,12 +124,16 @@ export default class AddProject extends Component
 								</div>
 								<div className="col-4 col2">
 									<label>Location : </label>
-									<input
-										className="form-control"
-										type="text"
+									<GoogleComponent
 										name="location"
-										onChange={this.handleChange}>
-									</input>
+										className="form-control"
+          					apiKey={API_KEY}
+          					language={'en'}
+          					country={'country:in|country:us'}
+          					coordinates={true}
+          					// locationBoxStyle={'custom-style'}
+          					// locationListStyle={'custom-style-list'}
+          					onChange={(e) => { this.setState({ place: e }) }} />
 								</div>
 								<div className="col-4 col3">
 									<label>Company Name : </label>

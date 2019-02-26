@@ -7,15 +7,6 @@ export default class ProjectDetails extends Component{
 	constructor(){
 		super();
 		this.state={
-			title:'',
-			start_date:'',
-			end_date:'',
-			member1:'',
-			member2:'',
-			member3:'',
-			description:'',
-			location:'',
-			company_name:'',
 			flag:false,
 			child:'',
 			editProject:''
@@ -31,6 +22,7 @@ export default class ProjectDetails extends Component{
 	call = (id) =>{
 		this.setState({ child:<EditProject id={id}/> })
 	}
+
   render(){
 		const style={
 			styles:{
