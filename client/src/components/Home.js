@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import '../css/Home.css';
 import ProjectDetails from '../container/ProjectDetails';
 import Education from '../container/Education';
-import  Certificate  from './Certificate';
+import  Certificate  from '../container/Certificate';
 import Explain from '../container/Explain';
 
 

@@ -1,7 +1,8 @@
 const initialState = {
   Project:[],
   Education:[],
-  Explain:[]
+  Explain:[],
+  Certificate:[]
  };
  
  const reducer = (state=initialState,action)=>
@@ -25,6 +26,13 @@ const initialState = {
       state={
         ...state,
         Explain:action.value
+      }
+      break;
+    case 'CERTIFICATE_DATA':
+      console.log("in certificate-reducer",action.value)
+      state={
+        ...state,
+        Certificate:action.value
       }
       break;
     default:

@@ -8,12 +8,13 @@ export default class Education extends Component{
 		super(props);
 		this.state={
 			isLoading: false,
-			education: []
+			education: [],
+			child:''
 		}
 	};
 	
 	componentWillMount(){
-		console.log("in componentdid-mount of education");
+		console.log("in componentwill-mount of education");
 		const student_id=localStorage.getItem('id');
 		this.props.showEducationData(student_id);
 	}
@@ -27,6 +28,10 @@ export default class Education extends Component{
 		}
 	}
 
+	call = (id) =>{
+		this.setState({ child:<EditEducation education_id={id}/> })
+	}
+	
   render(){
 		const style={
 			styles:{
@@ -71,10 +76,9 @@ export default class Education extends Component{
 											<p>{education.institute_name}</p>
 										</div>
 									</div>
-									<hr color="yellow"></hr>
 									<div className="row row3">
 										{/* Dialog for Edit Educational Details */}
-										<button type="button" className="btn btn-primary " data-toggle="modal" data-target="#editEducation">
+										<button onClick={this.call.bind(this,education._id)} type="button" className="btn btn-primary " data-toggle="modal" data-target="#editEducation">
   										Edit
 										</button>
 										<div className="modal fade" id="editEducation" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,7 +91,7 @@ export default class Education extends Component{
 				        							</button>
 				      							</div>
 				      							<div className="modal-body">
-				        							<EditEducation education_id={education._id}/>
+															{this.state.child}
 														</div>
 				      							<div className="modal-footer">
 				        							<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -88,8 +88,6 @@ export const show_education_data = async (student_id) =>{
 }
 
 export const edit_education_data = async (education_id,data) =>{
-	console.log("in api",data,"  ",education_id);
-	console.log("qualification",data.qualification)
 	const token = localStorage.getItem('token');
 	const url = "/education/"+education_id;
 	let config={
@@ -161,4 +159,52 @@ export const edit_explain_data = async (explain,explain_id) =>{
 		{
 			"explain":explain
 		},config);
+}
+
+
+export const show_certificate_data = async () =>{
+	const token = localStorage.getItem('token');
+	const student_id = localStorage.getItem('id');
+	const url="/certificate/"+student_id;
+	const data = await fetch(url,{
+		method:'GET',
+		headers:{
+			'Content-Type':'application/json',
+			'authorization':'Bearer '+token
+		}
+	}).then(res=>res.json())
+	.catch(error=>alert(error))
+	return data;
+}
+
+export const add_certificate_data = async (data) =>{
+	data.student_id=localStorage.getItem('id');
+	const token=localStorage.getItem('token');
+	await fetch("/certificate",{
+		method:'POST',
+		body:JSON.stringify(data),
+		headers:{
+			'Content-Type':'application/json',
+			'authorization':'Bearer '+token
+		}
+	}).then(res=>res.json())
+	.catch(error=>alert(error))
+}
+
+export const edit_certificate_data = async (certificate_id,data) =>{
+	const token = localStorage.getItem('token');
+	const url = "/certificate/"+certificate_id;
+	let config={
+		headers:{
+		'Content-Type':'application/json',
+		'authorization':'Bearer '+token
+		}
+	}
+	await axios.patch(url,
+	{
+		"title":data.title,
+		"start_date":data.start_date,
+		"end_date":data.end_date,
+		"institute_name":data.institute_name
+	},config);
 }

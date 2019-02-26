@@ -28,6 +28,9 @@ export default class ProjectDetails extends Component{
 		this.props.showProjectData(student_id);
 	}
 
+	call = (id) =>{
+		this.setState({ child:<EditProject id={id}/> })
+	}
   render(){
 		const style={
 			styles:{
@@ -36,13 +39,13 @@ export default class ProjectDetails extends Component{
 		}
 		console.log(this.props.data)
     return(
-      <div className="ProjectDetails">
+      <div className="ProjectDetails my-3">
 				<div className="container-fluid container1 my-3">
 					<h4>Project Details</h4>
 					{
 						(this.props.data.length===0)?
 						(
-							<p>Add a project</p>
+							<p>Add Project</p>
 						):
 						(this.props.data.length && this.props.data.map((project,index)=>{
 							return(
@@ -91,7 +94,7 @@ export default class ProjectDetails extends Component{
 									</div>
 									<div className="row row4">
 										{/* Dialog for Add Project */}
-										<button type="button" className="btn btn-primary " data-toggle="modal" data-target="#editProject">
+										<button onClick={this.call.bind(this,project._id)} type="button" className="btn btn-primary " data-toggle="modal" data-target="#editProject">
   										Edit
 										</button>
 										<div className="modal fade" id="editProject" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -104,7 +107,7 @@ export default class ProjectDetails extends Component{
 				        							</button>
 				      							</div>
 				      							<div className="modal-body">
-				        							<EditProject id={project._id}/>
+				        							{this.state.child}
 														</div>
 				      							<div className="modal-footer">
 				        							<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

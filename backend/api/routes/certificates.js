@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Education = require('../models/education');
+const Certificate = require('../models/certificate');
 const checkAuth = require('../middleware/check-auth');
 
 router.get('/',checkAuth,async(req,res,next)=>{
-  await Education.find()
+  await Certificate.find()
   .exec()
   .then(docs=>{
     console.log(docs)
@@ -20,20 +20,19 @@ router.get('/',checkAuth,async(req,res,next)=>{
 
 
 router.post('/',checkAuth, async (req,res,next)=>{
-	const education = new Education({
+	const certificate = new Certificate({
     _id: new mongoose.Types.ObjectId(),
-    qualification: req.body.qualification,
-    start_date:req.body.start_date,
+		title: req.body.title,
+		start_date:req.body.start_date,
 		end_date:req.body.end_date,
-		location:req.body.location,
 		institute_name:req.body.institute_name,
 		student_id:req.body.student_id
 	});
-  await education.save().then(result=>{
+  await certificate.save().then(result=>{
     console.log(result);
     res.status(201).json({
-      message:'Education Created',
-      createdEducation : result
+      message:'Certificate Created',
+      createdCertificate : result
     });
     }).catch(err=> {
       console.log(err);
@@ -46,7 +45,7 @@ router.post('/',checkAuth, async (req,res,next)=>{
 
 router.get('/:studentId',checkAuth,async(req,res,next)=>{
   const student_id = req.params.studentId;
-  await Education.find({ "student_id":student_id }).sort({"end_date":-1})
+  await Certificate.find({ "student_id":student_id }).sort({"end_date":-1})
   .exec()
   .then(doc=>{
     console.log("From database",doc);
@@ -63,21 +62,20 @@ router.get('/:studentId',checkAuth,async(req,res,next)=>{
 });
 
 
-router.patch('/:educationId',checkAuth,(req,res,next)=>{
-  console.log("in education patch")
-  const id = req.params.educationId;
+router.patch('/:explainId',checkAuth,(req,res,next)=>{
+  console.log("in explain patch")
+  const id = req.params.explainId;
     // const updateOps = {};
     // for(const ops of req.body){
     //     updateOps[ops.propName] = ops.value;
     // }
-    Education.update({ _id:id }, 
+    Certificate.update({ _id:id }, 
       { 
         $set:{
-          "qualification":req.body.qualification,
-          "start_date":req.body.start_date,
-          "end_date":req.body.end_date,
-          "location":req.body.location,
-          "institute_name":req.body.institute_name,
+          "title": req.body.title,
+					"start_date":req.body.start_date,
+					"end_date":req.body.end_date,
+					"institute_name":req.body.institute_name,
         }
       }
     )

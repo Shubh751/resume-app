@@ -49,7 +49,8 @@ export default class Explain extends Component{
       student_id:student_id
     }
     this.props.saveExplainData(data);
-    this.setState({ flag:'saved' })
+    this.setState({ flag:'saved' });
+    this.props.showExplainData(student_id);
   }
 
   edit = (event) =>{
@@ -57,12 +58,10 @@ export default class Explain extends Component{
     const explain=this.state.explain;
     const explain_id=this.state.explain_id;
     this.props.editExplainData(explain,explain_id);
-    this.setState({ flag:'Edited' })
-    alert(this.state.explain,explain_id)
+    this.setState({ flag:'Edited' });
   }
 
   render(){
-    console.log("explain",JSON.stringify(this.props.data))
     return(
       <div className="Explain container">
         {
@@ -84,7 +83,7 @@ export default class Explain extends Component{
                 </div>
                 <div className="row row2">
                   <input
-                    className="btn btn-info"
+                    className="btn btn-success"
                     type="submit"
                     value="Save">
                   </input>
@@ -94,7 +93,7 @@ export default class Explain extends Component{
              </form>
           ):
           (
-            <div className="row row3">
+            <div className="row row3 my-4">
               <h4>Explain Your Self</h4>
               <textarea
                 className="form-control textarea"
@@ -106,10 +105,11 @@ export default class Explain extends Component{
               </textarea>
               <button 
                 type="button"
-                className="btn btn-info"
-                onClick={this.edit.bind(this,)}>
+                className="btn btn-primary"
+                onClick={this.edit}>
                 Edit
               </button>
+              <p className="mx-3 my-2">{ this.state.flag }</p>
             </div>
           )    
         }             

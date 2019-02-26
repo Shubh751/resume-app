@@ -34,6 +34,20 @@ export function edit_explain(explain,explain_id){
     return { type:'EDIT_EXPLAIN_DATA',explain,explain_id }
 }
 
+export function show_certificate(){
+    return { type:'SHOW_CERTIFICATE_DATA' }
+}
+
+export function add_certificate(data){
+    return { type:'ADD_CERTIFICATE_DATA', data }
+}
+
+export function edit_certificate(certificate_id,data){
+    return { type:'EDIT_CERTIFICATE_DATA', certificate_id,data }
+}
+
+
+
 // export function addCom(data1){
 //     return { type: 'ADD_COMMENT', data1 }
 // }

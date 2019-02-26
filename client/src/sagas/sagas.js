@@ -9,7 +9,10 @@ import {
   add_education_data,
   save_explain_data,
   show_explain_data,
-  edit_explain_data
+  edit_explain_data,
+  show_certificate_data,
+  add_certificate_data,
+  edit_certificate_data
 } from '../api/api';
 
 
@@ -60,6 +63,20 @@ function* editExplainData(action){
   yield call(edit_explain_data,action.explain,action.explain_id)
 }
 
+function* showCertificateData(){
+  const data = yield call(show_certificate_data);
+  yield put({ type:'CERTIFICATE_DATA', value:data })
+}
+
+function* addCertificateData(action){
+  yield call(add_certificate_data,action.data);
+}
+
+function* editCertificateData(action){
+  yield call(edit_certificate_data,action.certificate_id,action.data);
+}
+
+
 export default function* rootSaga()
 {
   console.log("in root saga")
@@ -75,5 +92,8 @@ export default function* rootSaga()
     yield takeLatest('SAVE_EXPLAIN_DATA',saveExplainData),
     yield takeLatest('SHOW_EXPLAIN_DATA',showExplainData),
     yield takeLatest('EDIT_EXPLAIN_DATA',editExplainData),
+    yield takeLatest('SHOW_CERTIFICATE_DATA',showCertificateData),
+    yield takeLatest('ADD_CERTIFICATE_DATA',addCertificateData),
+    yield takeLatest('EDIT_CERTIFICATE_DATA',editCertificateData)
   ])
 }

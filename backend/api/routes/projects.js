@@ -50,7 +50,7 @@ router.post('/',checkAuth, async (req,res,next)=>{
 
 router.get('/:studentId',checkAuth,(req,res,next)=>{
   const student_id = req.params.studentId;
-  Project.find({ "student_id":student_id })
+  Project.find({ "student_id":student_id }).sort({"end_date":-1})
   .exec()
   .then(doc=>{
     console.log("From database",doc);
