@@ -46,6 +46,18 @@ export function edit_certificate(certificate_id,data){
     return { type:'EDIT_CERTIFICATE_DATA', certificate_id,data }
 }
 
+export function show_image(){
+    return { type:'SHOW_IMAGE_DATA' }
+}
+
+export function edit_image(formData){
+    return { type:'EDIT_IMAGE_DATA', formData }
+}
+
+export function add_image(formData){
+    return { type:'ADD_IMAGE_DATA', formData }
+}
+
 
 
 // export function addCom(data1){

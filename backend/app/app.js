@@ -7,6 +7,8 @@ const educationRoutes = require('../api/routes/educations');
 const studentRoutes = require('../api/routes/students');
 const explainRoutes = require('../api/routes/explains');
 const certificateRoutes = require('../api/routes/certificates');
+const imageRoutes = require('../api/routes/images');
+
 
 
 
@@ -17,14 +19,29 @@ mongoose.connect(
 
 
 app.use(morgan('dev'));
+app.use('/uploads',express.static('uploads'));
 app.use(express.json());
 
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
+  next();
+});
 
 app.use('/education',educationRoutes);
 app.use('/student',studentRoutes);
 app.use('/project',projectRoutes);
 app.use('/explain',explainRoutes);
 app.use('/certificate',certificateRoutes);
+app.use('/image',imageRoutes);
 
 
 app.use((req,res,next)=>

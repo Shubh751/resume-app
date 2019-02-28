@@ -116,7 +116,7 @@ export default class ProjectDetails extends Component{
 					}
 				</div>
 				{/* Dialog for Add Project */}
-				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addProject">
+				<button type="button" className="btn btn-success" data-toggle="modal" data-target="#addProject">
   				Add Project
 				</button>
 				<div className="modal fade" id="addProject" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -133,7 +133,6 @@ export default class ProjectDetails extends Component{
 				      </div>
 				      <div className="modal-footer">
 				        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" className="btn btn-primary">Save changes</button>
 				      </div>
 				    </div>
 				  </div>

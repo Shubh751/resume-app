@@ -108,7 +108,7 @@ export default class Education extends Component{
 					}
 				</div>
 				{/* Dialog for Add Project */}
-				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addEducation">
+				<button type="button" className="btn btn-success" data-toggle="modal" data-target="#addEducation">
   				Add Education
 				</button>
 				<div className="modal fade" id="addEducation" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -125,7 +125,6 @@ export default class Education extends Component{
 				      </div>
 				      <div className="modal-footer">
 				        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" className="btn btn-primary">Save changes</button>
 				      </div>
 				    </div>
 				  </div>

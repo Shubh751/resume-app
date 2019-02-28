@@ -39,3 +39,7 @@ hr{
 .Home > .App > .container-fluid > .row2 > .col3 > .row2 > button{
     /* border-bottom: rgb(92, 156, 172) 1px; */
 }
+
+img:hover{
+    cursor: pointer;
+}

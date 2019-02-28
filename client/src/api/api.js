@@ -208,3 +208,55 @@ export const edit_certificate_data = async (certificate_id,data) =>{
 		"institute_name":data.institute_name
 	},config);
 }
+
+export const show_image_data = async () =>{
+	const token = localStorage.getItem('token');
+	const student_id = localStorage.getItem('id');
+	const url="/image/"+student_id
+	const data = await fetch(url,{
+		method:'GET',
+		headers:{
+			'Content-Type':'application/json',
+			'authorization':'Bearer '+token
+		}
+	}).then(res=>res.json())
+	.catch(error=>alert(error))
+	try{
+		const image = data[0].student_image;
+		return image;
+	}catch(error){
+		console.log(error)
+	}
+}
+
+export const edit_image_data =  async (formData) =>{
+	alert("edit")
+	// const token = localStorage.getItem('token');
+	// // const student_id = localStorage.getItem('id');
+	// const config = {
+	// 	headers: {
+	// 			'content-type': 'multipart/form-data',
+	// 			'authorization':'Bearer '+token
+	// 	}
+	// };
+	// axios.post("/image",formData,config)
+	// 	.then((response) => response.json())
+	// 	.catch((error) => {
+	// });
+}
+
+export const add_image_data =  async (formData) =>{
+	const token = localStorage.getItem('token');
+	// const student_id = localStorage.getItem('id');
+	const config = {
+		headers: {
+				'content-type': 'multipart/form-data',
+				'authorization':'Bearer '+token
+		}
+	};
+	axios.post("/image",formData,config)
+		.then((response) => response.json())
+		.catch((error) => {
+			console.log(error)
+	});
+}
