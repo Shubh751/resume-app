@@ -230,33 +230,37 @@ export const show_image_data = async () =>{
 }
 
 export const edit_image_data =  async (formData) =>{
-	alert("edit")
-	// const token = localStorage.getItem('token');
-	// // const student_id = localStorage.getItem('id');
-	// const config = {
-	// 	headers: {
-	// 			'content-type': 'multipart/form-data',
-	// 			'authorization':'Bearer '+token
-	// 	}
-	// };
-	// axios.post("/image",formData,config)
-	// 	.then((response) => response.json())
-	// 	.catch((error) => {
-	// });
+	const token = localStorage.getItem('token');
+	const student_id = localStorage.getItem('id');
+	const url = "/image/"+student_id;
+	const data = await fetch(url,{
+		method:'GET',
+		headers:{
+			'content-type': 'multipart/form-data',
+			'authorization':'Bearer '+token
+		}
+	}).then(resp=>resp.json())
+	.catch(error=>console.log(error));
+
+	console.log("image data from database",data[0]._id)
+	const image_id = data[0]._id;
+	const config = {
+		headers: {
+			'content-type': 'multipart/form-data',
+			'authorization':'Bearer '+token
+		}
+	};
+	const url1 = "/image/"+image_id;
+	await axios.patch(url1,formData,config);
 }
 
 export const add_image_data =  async (formData) =>{
 	const token = localStorage.getItem('token');
-	// const student_id = localStorage.getItem('id');
 	const config = {
 		headers: {
 				'content-type': 'multipart/form-data',
 				'authorization':'Bearer '+token
 		}
 	};
-	axios.post("/image",formData,config)
-		.then((response) => response.json())
-		.catch((error) => {
-			console.log(error)
-	});
+	await axios.post("/image",formData,config);
 }

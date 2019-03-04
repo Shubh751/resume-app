@@ -1,4 +1,4 @@
-import AddImage from '../components/EditImage';
+import AddImage from '../components/AddImage';
 import { show_image,add_image } from '../actions/actions';
 import { connect } from 'react-redux';
 

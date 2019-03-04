@@ -14,7 +14,7 @@ export default class EditImage extends Component{
     const formData = new FormData();
     formData.append('studentImage',image);
     formData.append('student_id',localStorage.getItem('id'));
-    this.props.editImageData(formData)
+    await this.props.editImageData(formData);
     await this.props.showImageData();
   }
 

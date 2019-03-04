@@ -89,40 +89,27 @@ router.get('/:studentId',checkAuth,(req,res,next)=>{
 });
 
 
-// router.patch('/:projectId',checkAuth,(req,res,next)=>{
-//   const id = req.params.projectId;
-//     // const updateOps = {};
-//     // for(const ops of req.body){
-//     //     updateOps[ops.propName] = ops.value;
-//     // }
-//     console.log("title",req.body.title)
-//     Project.update({ _id:id }, 
-//       { 
-//         $set:{
-//           "title":req.body.title,
-//           "start_date":req.body.start_date,
-//           "end_date":req.body.end_date,
-//           "member1":req.body.member1,
-//           "member2":req.body.member2,
-//           "member3":req.body.member3,
-//           "description":req.body.description,
-//           "location":req.body.location,
-//           "company_name":req.body.company_name,
-//         }
-//       }
-//     )
-//     .exec()
-//     .then(result=>{
-//         console.log(result);
-//         res.status(200).json(result);
-//     })
-//     .catch(err =>{
-//         console.log(err);
-//         res.status(500).json({
-//             error:err
-//         });
-//     });
-// });
+router.patch('/:imageId',upload.single('studentImage'),checkAuth,(req,res,next)=>{
+  const id = req.params.imageId;
+  Image.update({ _id:id },
+    { 
+      $set:{
+        "student_image":req.file.path
+      }
+    }
+  )
+  .exec()
+  .then(result=>{
+      console.log(result);
+      res.status(200).json(result);
+  })
+  .catch(err =>{
+      console.log(err);
+      res.status(500).json({
+          error:err
+      });
+  });
+});
 
 
 // router.delete('/:postId',checkAuth,(req,res,next)=>{

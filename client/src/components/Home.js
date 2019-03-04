@@ -19,11 +19,13 @@ export default class Home extends Component{
 
   editImage = (event) =>{
     event.preventDefault();
+    console.log("in edit image")
     this.setState({ child:<EditImage/> })
   }
 
   addImage = (event) =>{
     event.preventDefault();
+    console.log("in add image")
     this.setState({ child:<AddImage/> })
   }
 

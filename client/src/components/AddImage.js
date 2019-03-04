@@ -14,7 +14,7 @@ export default class AddImage extends Component{
     const formData = new FormData();
     formData.append('studentImage',image);
     formData.append('student_id',localStorage.getItem('id'));
-    await this.props.addImageData(formData)
+    await this.props.addImageData(formData);
     await this.props.showImageData();
   }
 
