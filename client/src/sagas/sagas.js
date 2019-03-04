@@ -16,7 +16,9 @@ import {
   show_image_data,
   edit_image_data,
   add_image_data,
-  edit_phone_data
+  edit_phone_data,
+  edit_email_data,
+  edit_location_data
 } from '../api/api';
 
 
@@ -97,6 +99,14 @@ function* editPhoneData(action){
   yield call(edit_phone_data,action.phone)
 }
 
+function* editEmailData(action){
+  yield call(edit_email_data,action.phone)
+}
+
+function* editLocationData(action){
+  yield call(edit_location_data,action.location)
+}
+
 
 export default function* rootSaga()
 {
@@ -119,6 +129,9 @@ export default function* rootSaga()
     yield takeLatest('SHOW_IMAGE_DATA',showImageData),
     yield takeLatest('EDIT_IMAGE_DATA',editImageData),
     yield takeLatest('ADD_IMAGE_DATA',addImageData),
-    yield takeLatest('EDIT_PHONE_DATA',editPhoneData)
+    yield takeLatest('EDIT_PHONE_DATA',editPhoneData),
+    yield takeLatest('EDIT_EMAIL_DATA',editEmailData),
+    yield takeLatest('EDIT_LOCATION_DATA',editLocationData)
   ])
 }
+

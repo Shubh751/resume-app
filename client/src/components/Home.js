@@ -15,7 +15,8 @@ export default class Home extends Component{
       this.state={
         child:null,
         phone:null,
-        // student_phone:null,
+        email:null,
+        location:null
       }
   };
 
@@ -37,13 +38,29 @@ export default class Home extends Component{
     this.props.editPhoneData(phone);
   }
 
+  editEmail = (event) =>{
+    event.preventDefault();
+    const email = this.state.email;
+    this.props.editEmailData(email);
+  }
+
+  editLocation = (event) =>{
+    event.preventDefault();
+    const location = this.state.location;
+    this.props.editLocationData(location);
+  }
+
   handleChnage = (event) =>{
     this.setState({ [event.target.name]: event.target.value });
   }
 
   componentDidMount(){
     this.props.showImageData();
-    this.setState({ phone:localStorage.getItem('phone') });
+    this.setState({ 
+      phone:localStorage.getItem('phone'),
+      email:localStorage.getItem('email'),
+      location:localStorage.getItem('location')
+    });
   }
 
   logout =() =>{
@@ -52,10 +69,8 @@ export default class Home extends Component{
   }
 
   render(){
-    console.log("home data.....",this.props.Image)
     return(
       <div className="Home">
-        <div className="App">
           <div className="container-fluid">
             <div className="row row1">
               <div className="col-9">
@@ -147,29 +162,65 @@ export default class Home extends Component{
                     </div>
                   }
                 </div>
-                <div className="row row2 my-2">
+                <div className="row row2 my-3">
+                  {/* Phone number */}
                   {
                     <div>
                       <form onSubmit={this.editPhone}>
+                        <input
+                          className="form-control"
+                          name="phone"
+                          value={this.state.phone}
+                          onChange={this.handleChnage}>
+                        </input>
+                        <input
+                          type="submit"
+                          className="my-2"
+                          value="Edit Phone">
+                        </input>
+                      </form>
+                    </div>
+                  }
+                </div>
+                <div className="row row3 my-3">
+                  {/* Email */}
+                  {
+                    <div>
+                      <form onSubmit={this.editEmail}>
                        <input
                          className="form-control"
-                         name="phone"
-                         value={this.state.phone}
+                         name="email"
+                         value={this.state.email}
                          onChange={this.handleChnage}>
                        </input>
                        <input
                          type="submit"
-                         value="Edit">
+                         className="my-2"
+                         value="Edit Email">
                        </input>
                       </form>
                     </div>
                   }
                 </div>
-                <div className="row row3 my-2">
-                  Email
-                </div>
-                <div className="row row4 my-2">
-                  Location
+                <div className="row row4 my-3">
+                  {/* Location */}
+                  {
+                    <div>
+                      <form onSubmit={this.editLocation}>
+                       <input
+                         className="form-control"
+                         name="location"
+                         value={this.state.location}
+                         onChange={this.handleChnage}>
+                       </input>
+                       <input
+                         type="submit"
+                         className="my-2"
+                         value="Edit Location">
+                       </input>
+                      </form>
+                    </div>
+                  }
                 </div>
                 <div className="row row5 my-2">
                   Skills
@@ -194,7 +245,6 @@ export default class Home extends Component{
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }

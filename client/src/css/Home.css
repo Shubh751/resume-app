@@ -1,17 +1,17 @@
-.Home > .App > .container-fluid >.row2 >.col-2{
-  background-color: rgb(125, 234, 253);
+.Home > .container-fluid >.row2 >.col-2{
+  background-color: #F5B7B1;
 }
 
-.Home > .App > .container-fluid >.row >.col-2 > .row > .Link{
+.Home > .container-fluid >.row >.col-2 > .row > .Link{
   color:rgb(75, 46, 46);
   width: 100%;
 }
 
-.Home > .App > .container-fluid >.row >.col-2 > .row > .Link:hover{
+.Home > .container-fluid >.row >.col-2 > .row > .Link:hover{
   background-color: rgb(245, 135, 108)
 }
 
-.Home > .App> .container-fluid > .row2 > .col2 > .row1 > form > .form-group > textarea{
+.Home > .container-fluid > .row2 > .col2 > .row1 > form > .form-group > textarea{
   /* border: solid red 2px; */
 }
 
@@ -19,11 +19,11 @@
   width: 100%;
 }
 
-.Home > .App > .container-fluid > .row1{
+.Home > .container-fluid > .row1{
   background-color: rgb(36, 19, 14);
 }
 
-.Home > .App > .container-fluid >.row >.col-1 >.Link{
+.Home > .container-fluid >.row >.col-1 >.Link{
   color:white;
 }
 
@@ -44,11 +44,78 @@ img:hover{
   cursor: pointer;
 }
 
-.Home > .App > .container-fluid > .row2 > .col1 > .row1{
+.Home >.container-fluid > .row2 > .col1 > .row1{
   border-bottom: 1px solid rgba(255, 0, 0, 0.479);
 }
-.Home > .App > .container-fluid > .row2 > .col1 > .row2{
-  border-bottom: 1px solid rgba(255, 0, 0, 0.479);
-  padding-bottom: 10px;
-  padding-top: 10px;
+
+.Home > .container-fluid > .row2 > .col1 > .row2{
+  text-align: center;
+  border-radius: 5px;
+  margin: 1px;
+  padding: 5px;
+  background-color: #E5E7E9;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row3{
+  text-align: center;
+  border-radius: 5px;
+  margin: 1px;
+  padding: 5px;
+  background-color: #E5E7E9;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row4{
+  text-align: center;
+  border-radius: 5px;
+  margin: 1px;
+  padding: 5px;
+  background-color: #E5E7E9;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row2 > div > form > input[type="submit"]{
+  border: none;
+  background-color: #85929E;
+  color: white;
+  /* margin: 5px; */
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row2 > div > form > input[type="submit"]:hover{
+  border: rgb(0, 0, 0) solid 1px;
+  border-radius: 5px;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  /* margin: 5px; */
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row3 > div > form > input[type="submit"]{
+  border: none;
+  background-color: #85929E;
+  color: white;
+  /* margin: 5px; */
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row3 > div > form > input[type="submit"]:hover{
+  border: rgb(0, 0, 0) solid 1px;
+  border-radius: 5px;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  /* margin: 5px; */
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row4 > div > form > input[type="submit"]{
+  border: none;
+  background-color: #85929E;
+  color: white;
+  /* margin: 5px; */
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row4 > div > form > input[type="submit"]:hover{
+  border: rgb(0, 0, 0) solid 1px;
+  border-radius: 5px;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  /* margin: 5px; */
 }

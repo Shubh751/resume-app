@@ -60,17 +60,17 @@ export const edit_project_data = async (project_id,data)=>{
 		}
 	}
 	await axios.patch(url,
-		{
-			"title":data.title,
-			"start_date":data.start_date,
-			"end_date":data.end_date,
-			"member1":data.member1,
-			"member2":data.member2,
-			"member3":data.member3,
-			"description":data.description,
-			"location":data.location,
-			"company_name":data.company_name
-		},config);
+	{
+		"title":data.title,
+		"start_date":data.start_date,
+		"end_date":data.end_date,
+		"member1":data.member1,
+		"member2":data.member2,
+		"member3":data.member3,
+		"description":data.description,
+		"location":data.location,
+		"company_name":data.company_name
+	},config);
 }
 
 export const show_education_data = async (student_id) =>{
@@ -135,7 +135,8 @@ export const save_explain_data = async (data) =>{
 
 export const show_explain_data = async (student_id) =>{
 	const token=localStorage.getItem('token');
-	const data = await fetch("/explain",{
+	const url="/explain/"+student_id;
+	const data = await fetch(url,{
 		method:'GET',
 		headers:{
 			'Content-Type':'application/json',
@@ -156,9 +157,9 @@ export const edit_explain_data = async (explain,explain_id) =>{
 		}
 	}
 	await axios.patch(url,
-		{
-			"explain":explain
-		},config);
+	{
+		"explain":explain
+	},config);
 }
 
 
@@ -268,7 +269,7 @@ export const add_image_data =  async (formData) =>{
 export const edit_phone_data = async(phone) =>{
 	const token = localStorage.getItem('token');
 	const student_id = localStorage.getItem('id');
-	const url = "/student/"+student_id;
+	const url = "/student/editPhone/"+student_id;
 	let config={
 		headers:{
 		'Content-Type':'application/json',
@@ -276,7 +277,39 @@ export const edit_phone_data = async(phone) =>{
 		}
 	}
 	await axios.patch(url,
-		{
-			"phone":phone,
-		},config);
+	{
+		"phone":phone,
+	},config);
+}
+
+export const edit_email_data = async(email) =>{
+	const token = localStorage.getItem('token');
+	const student_id = localStorage.getItem('id');
+	const url = "/student/editEmail/"+student_id;
+	let config={
+		headers:{
+		'Content-Type':'application/json',
+		'authorization':'Bearer '+token
+		}
+	}
+	await axios.patch(url,
+	{
+		"email":email,
+	},config);
+}
+
+export const edit_location_data = async(location) =>{
+	const token = localStorage.getItem('token');
+	const student_id = localStorage.getItem('id');
+	const url = "/student/editLocation/"+student_id;
+	let config={
+		headers:{
+		'Content-Type':'application/json',
+		'authorization':'Bearer '+token
+		}
+	}
+	await axios.patch(url,
+	{
+		"location":location,
+	},config);
 }

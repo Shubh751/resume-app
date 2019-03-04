@@ -140,31 +140,31 @@ export default class AddProject extends Component
 									</div>
 									<div className="col-4 col2">
 										<label>Location : </label>
-											<ReactGoogleMapLoader
-        								params={{
-        								  key: API_KEY,
-        								  libraries: "places,geocode",
-        								}}
-        								render={googleMaps =>
-        	  							googleMaps && (
-        	  							  <div>
-        	  							    <ReactGooglePlacesSuggest
-        	  							      autocompletionRequest={{input: search}}
-        	  							      googleMaps={googleMaps}
-        	  							      onSelectSuggest={this.handleSelectSuggest.bind(this)}
-        	  							    >
-        	  							      <input
-																	className="form-control"
-        	  							        type="text"
-        	  							        value={value}
-        	  							        placeholder="Search a location"
-        	  							        onChange={this.handleInputChange.bind(this)}
-        	  							      />
-        	  							    </ReactGooglePlacesSuggest>
-        	  							  </div>
-        	  							)
-      									}
-      								/>
+										<ReactGoogleMapLoader
+        							params={{
+        							  key: API_KEY,
+        							  libraries: "places,geocode",
+        							}}
+        							render={googleMaps =>
+        	  						googleMaps && (
+        	  						  <div>
+        	  						    <ReactGooglePlacesSuggest
+        	  						      autocompletionRequest={{input: search}}
+        	  						      googleMaps={googleMaps}
+        	  						      onSelectSuggest={this.handleSelectSuggest.bind(this)}
+        	  						    >
+        	  						      <input
+																className="form-control"
+        	  						        type="text"
+        	  						        value={value}
+        	  						        placeholder="Search a location"
+        	  						        onChange={this.handleInputChange.bind(this)}
+        	  						      />
+        	  						    </ReactGooglePlacesSuggest>
+        	  						  </div>
+        	  						)
+      								}
+      							/>
 									</div>
 									<div className="col-4 col3">
 										<label>Company Name : </label>

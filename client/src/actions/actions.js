@@ -66,3 +66,10 @@ export function edit_phone(phone){
     return { type:'EDIT_PHONE_DATA', phone }
 }
 
+export function edit_email(email){
+    return { type:'EDIT_EMAIL_DATA', email }
+}
+
+export function edit_location(location){
+    return { type:'EDIT_LOCATION_DATA', location }
+}

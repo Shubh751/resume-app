@@ -57,7 +57,8 @@ router.post("/login",(req,res,next)=>{
         email:req.body.email,
 				name:user[0].name,
 				phone:user[0].phone,
-        id:user[0]._id
+				id:user[0]._id,
+				location:user[0].location
       });
     }
     res.status(401).json({
@@ -99,6 +100,7 @@ router.post('/signup',(req,res,next)=>{
             name:req.body.name,
 						email: req.body.email,
 						phone: req.body.phone,
+						location:req.body.location,
             password: hash
           });
           user.save()
@@ -120,7 +122,7 @@ router.post('/signup',(req,res,next)=>{
   })   
 });
 
-router.patch("/:studentId",(req,res,next)=>{
+router.patch("/editPhone/:studentId",(req,res,next)=>{
 	const id = req.params.studentId;
   Student.update({ _id:id },
     { 
@@ -142,6 +144,50 @@ router.patch("/:studentId",(req,res,next)=>{
   });
 })
 
+router.patch("/editEmail/:studentId",(req,res,next)=>{
+	const id = req.params.studentId;
+  Student.update({ _id:id },
+    { 
+      $set:{
+        "email":req.body.email
+      }
+    }
+  )
+  .exec()
+  .then(result=>{
+    console.log(result);
+    res.status(200).json(result);
+  })
+  .catch(err =>{
+    console.log(err);
+    res.status(500).json({
+        error:err
+    });
+  });
+})
+
+router.patch("/editLocation/:studentId",(req,res,next)=>{
+	const id = req.params.studentId;
+  Student.update({ _id:id },
+    { 
+      $set:{
+        "location":req.body.location
+      }
+    }
+  )
+  .exec()
+  .then(result=>{
+    console.log(result);
+    res.status(200).json(result);
+  })
+  .catch(err =>{
+    console.log(err);
+    res.status(500).json({
+        error:err
+    });
+  });
+})
+
 router.delete("/:studentId",(req,res,next)=>{
   Student.remove({ _id: req.params.studentId })
   .exec()
@@ -158,8 +204,8 @@ router.delete("/:studentId",(req,res,next)=>{
   });
 });
 
-router.get("/:userId",(req,res,next)=>{
-  Student.findOne({ _id:req.params.userId })
+router.get("/:studentId",(req,res,next)=>{
+  Student.findOne({ _id:req.params.studentId })
   .exec()
   .then(result=>{
     console.log(result)
@@ -176,7 +222,5 @@ router.get("/:userId",(req,res,next)=>{
     res.status(500).json({error:err})
   });
 });
-
-
 
 module.exports = router;

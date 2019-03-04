@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import Login from './Login.js';
 import { Link } from "react-router-dom";
 import '../css/SignUp.css';
+import PropTypes from "prop-types"
+import ReactGoogleMapLoader from "react-google-maps-loader"
+import ReactGooglePlacesSuggest from "react-google-places-suggest"
+
+const API_KEY = "AIzaSyDwsdjfskhdbfjsdjbfksiTgnoriOAoUOgsUqOs10J0"
+
 class SignUp extends Component
 {
   constructor()
@@ -12,11 +18,22 @@ class SignUp extends Component
       email:'',
       password:'',
       name:'',
-      phone:''
+      phone:'',
+      search: "",
+      value: "",
     }
   	this.submit=this.submit.bind(this);
     this.login=this.login.bind(this);
     this.handleChange=this.handleChange.bind(this);
+    }
+
+    handleInputChange(e) {
+      this.setState({search: e.target.value, value: e.target.value})
+    }
+
+    handleSelectSuggest(suggest) {
+      console.log(suggest)
+      this.setState({search: "", value: suggest.formatted_address})
     }
 
     handleChange(e)
@@ -31,7 +48,8 @@ class SignUp extends Component
 				name:this.state.name,
         email:this.state.email,
         password:this.state.password,
-        phone:this.state.phone
+        phone:this.state.phone,
+        location:this.state.value,
       }
       this.props.signup(data);
     }
@@ -47,6 +65,7 @@ class SignUp extends Component
 
     render()
     {
+      const {search, value} = this.state
       return(
         <div className="Signup">
           <div className="container">
@@ -75,7 +94,7 @@ class SignUp extends Component
               <div className="row">
             	  <input
                   className="mx-5 my-3"
-              	  type="number"
+              	  type="text"
               	  placeholder="Enter Phone" 
               	  name="phone"
               	  onChange={this.handleChange}
@@ -83,10 +102,38 @@ class SignUp extends Component
             	  </input>
               </div>
               <div className="row">
+                <ReactGoogleMapLoader
+        					params={{
+        					  key: API_KEY,
+        					  libraries: "places,geocode",
+        					}}
+        					render={googleMaps =>
+        	  				googleMaps && (
+        	  				  <div>
+        	  				    <ReactGooglePlacesSuggest
+        	  				      autocompletionRequest={{input: search}}
+        	  				      googleMaps={googleMaps}
+        	  				      onSelectSuggest={this.handleSelectSuggest.bind(this)}
+        	  				    >
+        	  				      <input
+                            // className="form-control"
+                            required
+        	  				        type="text"
+        	  				        value={value}
+        	  				        placeholder="Search a location"
+        	  				        onChange={this.handleInputChange.bind(this)}
+        	  				      />
+        	  				    </ReactGooglePlacesSuggest>
+        	  				  </div>
+        	  				)
+      						}
+      					/>  
+              </div>
+              <div className="row">
                 <input
                   className="mx-5 my-3"
                   type="password"
-                  placeholder="Enter password" 
+                  placeholder="Enter password"
                   name="password"
                   onChange={this.handleChange}
                   required>
@@ -101,6 +148,10 @@ class SignUp extends Component
       </div>
     );
   }
+}
+
+SignUp.propTypes = {
+  googleMaps: PropTypes.object,
 }
 
 export default SignUp;
