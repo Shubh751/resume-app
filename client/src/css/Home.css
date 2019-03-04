@@ -119,3 +119,15 @@ img:hover{
   color: rgb(0, 0, 0);
   /* margin: 5px; */
 }
+
+.Home{
+  text-align: center;
+}
+
+.Home > .container-fluid > .row1 > .col1{
+  text-align: left;
+}
+
+.Home > .container-fluid > .row1 > .col2{
+  float: right;
+}

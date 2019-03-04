@@ -56,7 +56,6 @@ export default class ProjectDetails extends Component{
 											<p>{project.end_date}</p>
 										</div>
 									</div>
-									<hr color="yellow"></hr>
 									<div className="row row2 my-2">
 										<div className="col-4 col1">
 											<b>Team Members :</b> 
@@ -69,7 +68,6 @@ export default class ProjectDetails extends Component{
 											<p>{project.member3}</p>
 										</div>
 									</div>
-									<hr color="yellow"></hr>
 									<div className="row row3 my-2">
 										<div className="col-4 col1">
 											<b>Description :</b> 
@@ -93,7 +91,7 @@ export default class ProjectDetails extends Component{
 				  						<div className="modal-dialog modal-dialog-centered" role="document" >
 				    						<div className="modal-content"  style={style.styles}>
 				      						<div className="modal-header">
-				        						<div className="modal-title" id="exampleModalLabel">Enter Details</div>
+				        						<div className="modal-title" id="exampleModalLabel">Edit Details</div>
 				        							<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 				          							<span aria-hidden="true">&times;</span>
 				        							</button>
@@ -103,7 +101,6 @@ export default class ProjectDetails extends Component{
 														</div>
 				      							<div className="modal-footer">
 				        							<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-				        							<button type="button" className="btn btn-primary">Save changes</button>
 				      							</div>
 				    							</div>
 				  							</div>
@@ -123,7 +120,7 @@ export default class ProjectDetails extends Component{
 				  <div className="modal-dialog" role="document">
 				    <div className="modal-content">
 				      <div className="modal-header">
-				        <div className="modal-title" id="exampleModalLabel">Modal title</div>
+				        <div className="modal-title" id="exampleModalLabel">Add Project Details</div>
 				        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
 				          <span aria-hidden="true">&times;</span>
 				        </button>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../css/Explain.css';
 
 export default class Explain extends Component{
 	constructor(){
@@ -10,11 +11,6 @@ export default class Explain extends Component{
       }
 	};
   
-  // componentDidMount(){
-  //   const student_id = localStorage.getItem('id');
-  //   this.props.showExplainData(student_id);
-  // }
-
   componentWillMount(){
     const student_id = localStorage.getItem('id');
     this.props.showExplainData(student_id);
@@ -63,7 +59,7 @@ export default class Explain extends Component{
 
   render(){
     return(
-      <div className="Explain container">
+      <div className="Explain container my-3 mt-4">
         {
           (this.props.data.length===0)?
           (
@@ -71,7 +67,7 @@ export default class Explain extends Component{
               <div className="form-group my-4">
                 <div className="row row1">
                   <label htmlFor="explain">
-                    <h4>Explain Your Self:</h4>
+                    <h4>Explain Your Self : </h4>
                   </label>
                     <textarea
                       className="form-control textarea"
@@ -94,7 +90,7 @@ export default class Explain extends Component{
           ):
           (
             <div className="row row3 my-4">
-              <h4>Explain Your Self</h4>
+              <h4>Explain Your Self : </h4>
               <textarea
                 className="form-control textarea"
                 rows="3"

@@ -1,9 +1,14 @@
 .Certificate {
-    border: solid blue 1px;
-  }
+  border: none;
+  background-color:#E5E7E9;
+  padding: 25px;
+  border-radius: 15px;
+}
 
-/* .project_details{
+.certificate_details{
   border:none;
-  border-radius: 20px;
-  background-color: rgb(216, 209, 209);
-} */
+  text-align: justify;
+  padding: 15px;
+  background-color: #BDC3C7;
+}
+

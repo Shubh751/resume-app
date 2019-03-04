@@ -62,7 +62,6 @@ export default class Certificate extends Component{
 											<p>{certificate.end_date}</p>
 										</div>
 									</div>
-									<hr color="yellow"></hr>
 									<div className="row row2 my-2">
 										<div className="col-4 col1">
 											<b>Institute :</b> 
@@ -78,7 +77,7 @@ export default class Certificate extends Component{
 				  						<div className="modal-dialog modal-dialog-centered" role="document" >
 				    						<div className="modal-content"  style={style.styles}>
 				      						<div className="modal-header">
-				        						<div className="modal-title" id="exampleModalLabel">Enter Details</div>
+				        						<div className="modal-title" id="exampleModalLabel">Edit Details</div>
 				        							<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 				          							<span aria-hidden="true">&times;</span>
 				        							</button>
@@ -88,7 +87,6 @@ export default class Certificate extends Component{
 														</div>
 				      							<div className="modal-footer">
 				        							<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-				        							<button type="button" className="btn btn-primary">Save changes</button>
 				      							</div>
 				    							</div>
 				  							</div>
@@ -101,14 +99,14 @@ export default class Certificate extends Component{
 					}
 				</div>
 				{/* Dialog for Add Project */}
-				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addCertificate">
+				<button type="button" className="btn btn-success" data-toggle="modal" data-target="#addCertificate">
   				Add Certificate
 				</button>
 				<div className="modal fade" id="addCertificate" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div className="modal-dialog" role="document">
 				    <div className="modal-content">
 				      <div className="modal-header">
-				        <div className="modal-title" id="exampleModalLabel">Modal title</div>
+				        <div className="modal-title" id="exampleModalLabel">Enter Certificate Details</div>
 				        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
 				          <span aria-hidden="true">&times;</span>
 				        </button>
@@ -118,7 +116,6 @@ export default class Certificate extends Component{
 				      </div>
 				      <div className="modal-footer">
 				        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" className="btn btn-primary">Save changes</button>
 				      </div>
 				    </div>
 				  </div>

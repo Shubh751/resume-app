@@ -11,6 +11,16 @@ export default class EditCertificate extends React.Component {
 			institute_name:'',
 		}
 	}
+
+	componentDidMount(){
+		this.setState({
+			title:this.props.data[0].title,
+			start_date:this.props.data[0].start_date,
+			end_date:this.props.data[0].end_date,
+			institute_name:this.props.data[0].institute_name,
+		});
+	}
+
 	handleChange = (event) =>{
 		this.setState({ [event.target.name]: event.target.value })
 	}
@@ -39,6 +49,7 @@ export default class EditCertificate extends React.Component {
 											className="form-control"
 											type="text"
 											name="title"
+											value={this.state.title}
 											onChange={this.handleChange}>
 										</input>
 								</div>
@@ -48,6 +59,7 @@ export default class EditCertificate extends React.Component {
 										className="form-control"
 										type="date"
 										name="start_date"
+										value={this.state.start_date}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -57,6 +69,7 @@ export default class EditCertificate extends React.Component {
 										className="form-control"
 										type="date"
 										name="end_date"
+										value={this.state.end_date}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -68,6 +81,7 @@ export default class EditCertificate extends React.Component {
 										className="form-control"
 										name="institute_name"
 										type="text"
+										value={this.state.institute_name}
 										onChange={this.handleChange}>
 									</input>
 								</div>

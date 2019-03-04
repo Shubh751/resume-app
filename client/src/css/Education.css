@@ -1,15 +1,18 @@
 .Education {
-    border: solid blue 1px;
-    /* box-shadow: 5px 10px 18px #888888; */
-    }
+  border: none;
+  background-color:#E5E7E9;
+  padding: 25px;
+  border-radius: 15px;
+  /* box-shadow: 5px 10px 18px #888888; */
+}
 
-  .education_details{
-    border:none;
-    border-radius: 20px;
-    background-color: rgb(197, 233, 228);
-    
-  } 
-  .education_details > .row1 , .education_details > .row2
-  {
-    padding: 18px;
-  }
+.education_details{
+  border:none;
+  text-align: justify;
+  padding: 15px;
+  background-color: #BDC3C7;
+} 
+.education_details > .row1 , .education_details > .row2
+{
+  padding: 18px;
+}

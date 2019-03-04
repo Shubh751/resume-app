@@ -12,6 +12,17 @@ export default class EditProject extends React.Component {
 			institute_name:'',
 		}
 	}
+
+	componentDidMount(){
+		this.setState({
+			qualification:this.props.data[0].qualification,
+			start_date:this.props.data[0].start_date,
+			end_date:this.props.data[0].end_date,
+			location:this.props.data[0].location,
+			institute_name:this.props.data[0].institute_name,
+		})
+	}
+
 	handleChange = (event) =>{
 		this.setState({ [event.target.name]: event.target.value })
 	}
@@ -42,6 +53,7 @@ export default class EditProject extends React.Component {
 											className="form-control"
 											type="text"
 											name="qualification"
+											value={this.state.qualification}
 											onChange={this.handleChange}>
 										</input>
 								</div>
@@ -51,6 +63,7 @@ export default class EditProject extends React.Component {
 										className="form-control"
 										type="date"
 										name="start_date"
+										value={this.state.start_date}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -60,6 +73,7 @@ export default class EditProject extends React.Component {
 										className="form-control"
 										type="date"
 										name="end_date"
+										value={this.state.end_date}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -71,6 +85,7 @@ export default class EditProject extends React.Component {
 										className="form-control"
 										name="location"
 										type="text"
+										value={this.state.location}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -80,6 +95,7 @@ export default class EditProject extends React.Component {
 										className="form-control"
 										name="institute_name"
 										type="text"
+										value={this.state.institute_name}
 										onChange={this.handleChange}>
 									</input>
 								</div>

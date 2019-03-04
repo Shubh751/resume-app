@@ -16,6 +16,21 @@ export default class EditProject extends React.Component {
 			company_name:'',
 		}
 	}
+
+	componentDidMount(){
+		this.setState({ 
+			title:this.props.data[0].title,
+			start_date:this.props.data[0].start_date,
+			end_date:this.props.data[0].end_date,
+			member1:this.props.data[0].member1,
+			member2:this.props.data[0].member2,
+			member3:this.props.data[0].member3,
+			description:this.props.data[0].description,
+			location:this.props.data[0].location,
+			company_name:this.props.data[0].company_name,
+		})
+	}
+
 	handleChange = (event) =>{
 		this.setState({ [event.target.name]: event.target.value })
 	}
@@ -39,7 +54,6 @@ export default class EditProject extends React.Component {
 		await this.props.showProjectData(id);
 	}
   render() {
-		
     return (
       <div className="EditProject">
 				<form onSubmit={this.edit}>
@@ -51,6 +65,7 @@ export default class EditProject extends React.Component {
 											className="form-control"
 											type="text"
 											name="title"
+											value={this.state.title}
 											onChange={this.handleChange}>
 										</input>
 								</div>
@@ -60,6 +75,7 @@ export default class EditProject extends React.Component {
 										className="form-control"
 										type="date"
 										name="start_date"
+										value={this.state.start_date}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -69,6 +85,7 @@ export default class EditProject extends React.Component {
 										className="form-control"
 										type="date"
 										name="end_date"
+										value={this.state.end_date}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -81,6 +98,7 @@ export default class EditProject extends React.Component {
 										name="member1"
 										type="text"
 										placeholder="1."
+										value={this.state.member1}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -90,6 +108,7 @@ export default class EditProject extends React.Component {
 										name="member2"
 										type="text"
 										placeholder="2."
+										value={this.state.member2}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -99,6 +118,7 @@ export default class EditProject extends React.Component {
 										name="member3"
 										type="text"
 										placeholder="3."
+										value={this.state.member3}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -110,6 +130,7 @@ export default class EditProject extends React.Component {
 										className="form-control"
 										id="description"
 										name="description"
+										value={this.state.description}
 										onChange={this.handleChange}>
 									</textarea>
 								</div>
@@ -119,6 +140,7 @@ export default class EditProject extends React.Component {
 										className="form-control"
 										type="text"
 										name="location"
+										value={this.state.location}
 										onChange={this.handleChange}>
 									</input>
 								</div>
@@ -128,6 +150,7 @@ export default class EditProject extends React.Component {
 										className="form-control"
 										type="text"
 										name="company_name"
+										value={this.state.company_name}
 										onChange={this.handleChange}>
 									</input>
 								</div>
