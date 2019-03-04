@@ -14,6 +14,8 @@ export default class Home extends Component{
     super();
       this.state={
         child:null,
+        phone:null,
+        // student_phone:null,
       }
   };
 
@@ -29,8 +31,19 @@ export default class Home extends Component{
     this.setState({ child:<AddImage/> })
   }
 
+  editPhone = (event) =>{
+    event.preventDefault();
+    const phone = this.state.phone;
+    this.props.editPhoneData(phone);
+  }
+
+  handleChnage = (event) =>{
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   componentDidMount(){
     this.props.showImageData();
+    this.setState({ phone:localStorage.getItem('phone') });
   }
 
   logout =() =>{
@@ -39,7 +52,7 @@ export default class Home extends Component{
   }
 
   render(){
-    console.log("home data.....",this.props.data)
+    console.log("home data.....",this.props.Image)
     return(
       <div className="Home">
         <div className="App">
@@ -68,13 +81,13 @@ export default class Home extends Component{
                       </h4>
                       <div className="col-4 col1 mx-2 my-3">
                         {
-                          (this.props.data)?
+                          (this.props.Image)?
                           (
                             <div>
                               <img
                                 data-toggle="modal" data-target="#editImage"
                                 onClick={this.editImage}
-                                src={this.props.data}
+                                src={this.props.Image}
                                 className="rounded-circle"
                                 alt=""
                                 width="200"
@@ -130,16 +143,36 @@ export default class Home extends Component{
                             </div>
                           )
                         }
-                        
                       </div>
                     </div>
                   }
                 </div>
-                <div className="row row2">
-
+                <div className="row row2 my-2">
+                  {
+                    <div>
+                      <form onSubmit={this.editPhone}>
+                       <input
+                         className="form-control"
+                         name="phone"
+                         value={this.state.phone}
+                         onChange={this.handleChnage}>
+                       </input>
+                       <input
+                         type="submit"
+                         value="Edit">
+                       </input>
+                      </form>
+                    </div>
+                  }
                 </div>
-                <div className="row row3">
-
+                <div className="row row3 my-2">
+                  Email
+                </div>
+                <div className="row row4 my-2">
+                  Location
+                </div>
+                <div className="row row5 my-2">
+                  Skills
                 </div>
               </div>
               <div className="col-10 col2">

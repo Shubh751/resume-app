@@ -11,7 +11,8 @@ class SignUp extends Component
     this.state={
       email:'',
       password:'',
-      name:''
+      name:'',
+      phone:''
     }
   	this.submit=this.submit.bind(this);
     this.login=this.login.bind(this);
@@ -29,7 +30,8 @@ class SignUp extends Component
       const data={
 				name:this.state.name,
         email:this.state.email,
-        password:this.state.password
+        password:this.state.password,
+        phone:this.state.phone
       }
       this.props.signup(data);
     }
@@ -61,14 +63,24 @@ class SignUp extends Component
                </input>
               </div>
               <div className="row">
-            	 <input
-                className="mx-5 my-3"
-              	type="text"
-              	placeholder="Enter Email" 
-              	name="email" 
-              	onChange={this.handleChange}
-                required>
-            	 </input>
+            	  <input
+                  className="mx-5 my-3"
+              	  type="text"
+              	  placeholder="Enter Email" 
+              	  name="email" 
+              	  onChange={this.handleChange}
+                  required>
+            	  </input>
+              </div>
+              <div className="row">
+            	  <input
+                  className="mx-5 my-3"
+              	  type="number"
+              	  placeholder="Enter Phone" 
+              	  name="phone"
+              	  onChange={this.handleChange}
+                  required>
+            	  </input>
               </div>
               <div className="row">
                 <input

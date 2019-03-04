@@ -1,45 +1,54 @@
 .Home > .App > .container-fluid >.row2 >.col-2{
-    background-color: rgb(125, 234, 253);
+  background-color: rgb(125, 234, 253);
 }
 
 .Home > .App > .container-fluid >.row >.col-2 > .row > .Link{
-    color:rgb(75, 46, 46);
-    width: 100%;
+  color:rgb(75, 46, 46);
+  width: 100%;
 }
 
 .Home > .App > .container-fluid >.row >.col-2 > .row > .Link:hover{
-    background-color: rgb(245, 135, 108)
+  background-color: rgb(245, 135, 108)
 }
 
 .Home > .App> .container-fluid > .row2 > .col2 > .row1 > form > .form-group > textarea{
-    /* border: solid red 2px; */
+  /* border: solid red 2px; */
 }
 
 .textarea{
-    width: 100%;
+  width: 100%;
 }
 
 .Home > .App > .container-fluid > .row1{
-    background-color: rgb(36, 19, 14);
+  background-color: rgb(36, 19, 14);
 }
 
 .Home > .App > .container-fluid >.row >.col-1 >.Link{
-    color:white;
+  color:white;
 }
 
 h5{
-    color:white;
+  color:white;
 }
 
 hr{
-    padding: 0%;
-    margin: 0%;
+  padding: 0%;
+  margin: 0%;
 }
 
 .Home > .App > .container-fluid > .row2 > .col3 > .row2 > button{
-    /* border-bottom: rgb(92, 156, 172) 1px; */
+  /* border-bottom: rgb(92, 156, 172) 1px; */
 }
 
 img:hover{
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.Home > .App > .container-fluid > .row2 > .col1 > .row1{
+  border-bottom: 1px solid rgba(255, 0, 0, 0.479);
+}
+.Home > .App > .container-fluid > .row2 > .col1 > .row2{
+  border-bottom: 1px solid rgba(255, 0, 0, 0.479);
+  padding-bottom: 10px;
+  padding-top: 10px;
 }

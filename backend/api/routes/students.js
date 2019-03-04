@@ -6,17 +6,17 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 router.get('/',(req,res,next)=>{
-    User.find()
-    .exec()
-    .then(docs=>{
-        console.log(docs);
-         res.status(200).json(docs);
-    }).catch(err=>{
-        console.log(err); 
-        res.status(500).json({
-            error:err
-        });
-    });
+  Student.find()
+  .exec()
+  .then(docs=>{
+      console.log(docs);
+       res.status(200).json(docs);
+  }).catch(err=>{
+      console.log(err); 
+      res.status(500).json({
+          error:err
+      });
+  });
     
 });
 
@@ -55,7 +55,8 @@ router.post("/login",(req,res,next)=>{
         message: "Authentication succesful",
         token: token,
         email:req.body.email,
-        name:user[0].name,
+				name:user[0].name,
+				phone:user[0].phone,
         id:user[0]._id
       });
     }
@@ -74,84 +75,106 @@ router.post("/login",(req,res,next)=>{
 
 
 router.post('/signup',(req,res,next)=>{
-    Student.find({ email:req.body.email })
-    .exec()
-    .then(user=>{
-        if(user.length >= 1)
-        {
-            return res.status(409).json({
-                message:"Mail exists"
-            });
+  Student.find({ email:req.body.email })
+  .exec()
+  .then(user=>{
+    if(user.length >= 1)
+    {
+        return res.status(409).json({
+            message:"Mail exists"
+        });
+    }
+    else
+    {
+      bcrypt.hash(req.body.password, 10, (err, hash)=>{
+        if(err){
+          return res.status(500).json({
+              error:err
+          });
         }
         else
         {
-            bcrypt.hash(req.body.password, 10, (err, hash)=>{
-                if(err){
-                    return res.status(500).json({
-                        error:err
-                    });
-                }
-                else
-                {
-                    const user =new Student({
-                        _id: new mongoose.Types.ObjectId(),
-                        name:req.body.name,
-                        email: req.body.email,
-                        password: hash
-                    });
-                    user.save()
-                    .then(result=>{
-                        console.log(result);
-                        res.status(201).json({
-                            message:'User created'
-                        });
-                    })
-                    .catch(err=>{
-                        console.log(err);
-                        res.status(500).json({
-                            error:err
-                        })
-                    })
-                }
+          const user =new Student({
+            _id: new mongoose.Types.ObjectId(),
+            name:req.body.name,
+						email: req.body.email,
+						phone: req.body.phone,
+            password: hash
+          });
+          user.save()
+          .then(result=>{
+            console.log(result);
+            res.status(201).json({
+                message:'User created'
+            });
+          })
+          .catch(err=>{
+            console.log(err);
+            res.status(500).json({
+                error:err
             })
+          })
         }
-    })   
+      })
+    }
+  })   
 });
 
+router.patch("/:studentId",(req,res,next)=>{
+	const id = req.params.studentId;
+  Student.update({ _id:id },
+    { 
+      $set:{
+        "phone":req.body.phone
+      }
+    }
+  )
+  .exec()
+  .then(result=>{
+      console.log(result);
+      res.status(200).json(result);
+  })
+  .catch(err =>{
+      console.log(err);
+      res.status(500).json({
+          error:err
+      });
+  });
+})
 
-router.delete("/:userId",(req,res,next)=>{
-    Student.remove({ _id: req.params.userId })
-    .exec()
-    .then(result =>{
-        res.status(200).json({
-            message: "User Deleted"
-        });
-    })
-    .catch(err=>{
-        console.log(err);
-        res.status(500).json({
-            error:err
-        });
-    });
+router.delete("/:studentId",(req,res,next)=>{
+  Student.remove({ _id: req.params.studentId })
+  .exec()
+  .then(result =>{
+      res.status(200).json({
+          message: "User Deleted"
+      });
+  })
+  .catch(err=>{
+      console.log(err);
+      res.status(500).json({
+          error:err
+      });
+  });
 });
 
 router.get("/:userId",(req,res,next)=>{
-    Student.findOne({ _id:req.params.userId })
-    .exec()
-    .then(result=>{
-        console.log(result)
-        if(result)
-        {
-            res.status(200).json({result})
-        }
-        else
-        {
-            res.status(400).json({message:"No entry found"});
-        }
-    }).catch(err=> {
-        console.log(err)
-        res.status(500).json({error:err})
-    });
+  Student.findOne({ _id:req.params.userId })
+  .exec()
+  .then(result=>{
+    console.log(result)
+    if(result)
+    {
+        res.status(200).json({result})
+    }
+    else
+    {
+        res.status(400).json({message:"No entry found"});
+    }
+  }).catch(err=> {
+    console.log(err)
+    res.status(500).json({error:err})
+  });
 });
 
 

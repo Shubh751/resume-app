@@ -52,6 +52,7 @@ class Login extends Component {
           localStorage.setItem('id',res.id),
           localStorage.setItem('name',res.name),
           localStorage.setItem('email',res.email),
+          localStorage.setItem('phone',res.phone),
           this.setState({logged_in:true}),
           this.props.history.push("/home")
         )

@@ -264,3 +264,19 @@ export const add_image_data =  async (formData) =>{
 	};
 	await axios.post("/image",formData,config);
 }
+
+export const edit_phone_data = async(phone) =>{
+	const token = localStorage.getItem('token');
+	const student_id = localStorage.getItem('id');
+	const url = "/student/"+student_id;
+	let config={
+		headers:{
+		'Content-Type':'application/json',
+		'authorization':'Bearer '+token
+		}
+	}
+	await axios.patch(url,
+		{
+			"phone":phone,
+		},config);
+}
