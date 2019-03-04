@@ -6,7 +6,6 @@ const mapStateToProps = state => ({ data: state.Image });
 const mapDispatchToProps = dispatch => {
     return{
       showImageData:()=> dispatch(show_image()),
-      // saveProjectData:(data) => dispatch(save_Project_data(data))
     }
   }
 

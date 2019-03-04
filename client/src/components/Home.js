@@ -93,7 +93,7 @@ export default class Home extends Component{
 				        		          					{this.state.child}
 										          				</div>
 				      			          				<div className="modal-footer">
-				        		          					<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>				      			        				</div>
+				        		          					<button onClick={()=>{ this.props.showImageData(); }} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>				      			        				</div>
 				    				          			</div>
 				  					          		</div>
 										          </div>
@@ -123,7 +123,7 @@ export default class Home extends Component{
 				        		          					{this.state.child}
 										          				</div>
 				      			          				<div className="modal-footer">
-				        		          					<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>				      			        				</div>
+				        		          					<button onClick={()=>{ this.props.showImageData(); }} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>				      			        				</div>
 				    				          			</div>
 				  					          		</div>
 										          </div>
