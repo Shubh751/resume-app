@@ -1,33 +1,46 @@
 .Login > .container{
   width: 30%;
-  border: solid #273746 2px;
-  margin: 10% 15% 15% 35%;
+  margin: 10% 15% 15% 34%;
   padding: 50px;
   text-align: center;
-	background-color: #D5D8DC;
+	background-color: #EAECEE;
 	border-radius: 10px;
 	}
 	
-  .Login > .row{
+  .Login > .container > .row > h4{
     text-align: center;
+    /* width: 100%; */
 	}
 
   .Login > .container > form > .row > input[type="text"]{
     border: none;
     text-align: center;
-    background-color: #D5D8DC;
-    border-bottom: 1px solid #ABB2B9;
+    background-color: #EAECEE;
+    border-bottom: 1px solid rgb(255, 164, 164);
   
   }
   .Login > .container > form > .row > input[type="password"]{
     border: none;
     text-align: center;
-    background-color: #D5D8DC;
-    border-bottom: 1px solid #ABB2B9;
+    background-color: #EAECEE;
+    border-bottom: 1px solid rgb(255, 164, 164);
   
 	}
 	
 	#link{
 		color:white;
 		text-decoration: none;
-	}
+  }
+
+  .Login {
+    background-image: url("../image/login.jpg");
+    /* background: url(mountain.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    margin: 0px;
+    padding: 3%;
+  }

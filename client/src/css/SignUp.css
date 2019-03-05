@@ -1,10 +1,10 @@
 .Signup > .container{
   width: 30%;
   border: solid #273746 2px;
-  margin: 10% 15% 15% 35%;
-  padding: 50px;
+  margin: 5% 15% 10% 35%;
+  padding: 40px;
 	text-align: center;
-	background-color: #D5D8DC;
+	background-color: #EAECEE;
 	border-radius: 10px;
 }
 
@@ -12,11 +12,12 @@
   text-align: center;
 }
 
-.Signup > .container > input{
+.Signup > .container > form > .row >  input[type="text"],
+.Signup > .container > form > .row >  input[type="password"]{
 	border: none;
 	text-align: center;
-	background-color: #D5D8DC;
-	border-bottom: 1px solid #ABB2B9;
+	background-color: #EAECEE;
+	border-bottom: 1px solid rgb(255, 164, 164);
 
 }
 
@@ -24,4 +25,16 @@
 .Signup > #link{
 	color:white;
 	text-decoration: none;
+}
+
+.Signup{
+	background-image: url("../image/login.jpg");
+	background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0px;
+  padding: 0.1%;
 }

@@ -65,15 +65,26 @@ class SignUp extends Component
 
     render()
     {
+      const style={
+        styles:{
+          border:'none',
+          backgroundColor:'#EAECEE',
+          borderBottom: '1px solid rgb(255, 164, 164)',
+          textAlign:'center',
+        },
+        stylesDiv:{
+          
+        }
+      }
       const {search, value} = this.state
       return(
         <div className="Signup">
           <div className="container">
             <h3><b><i>Sign-Up</i></b></h3>
-              <form onSubmit={this.submit} className="form-group">
+            <form onSubmit={this.submit} className="form-group">
               <div className="row">
                <input
-                className="mx-5 my-3"
+                className="mx-5 my-3 form-control"
                 type="text"
                 placeholder="Enter Name" 
                 name="name" 
@@ -82,56 +93,57 @@ class SignUp extends Component
                </input>
               </div>
               <div className="row">
-            	  <input
-                  className="mx-5 my-3"
+                <input
+                  className="mx-5 my-3 form-control"
               	  type="text"
               	  placeholder="Enter Email" 
               	  name="email" 
               	  onChange={this.handleChange}
                   required>
-            	  </input>
+                </input>
               </div>
               <div className="row">
-            	  <input
-                  className="mx-5 my-3"
+                <input
+                  className="mx-5 my-3 form-control"
               	  type="text"
               	  placeholder="Enter Phone" 
               	  name="phone"
               	  onChange={this.handleChange}
                   required>
-            	  </input>
+                </input>
               </div>
               <div className="row">
                 <ReactGoogleMapLoader
-        					params={{
-        					  key: API_KEY,
-        					  libraries: "places,geocode",
-        					}}
-        					render={googleMaps =>
-        	  				googleMaps && (
-        	  				  <div>
-        	  				    <ReactGooglePlacesSuggest
-        	  				      autocompletionRequest={{input: search}}
-        	  				      googleMaps={googleMaps}
-        	  				      onSelectSuggest={this.handleSelectSuggest.bind(this)}
-        	  				    >
-        	  				      <input
-                            // className="form-control"
+        		  		params={{
+        		  		  key: API_KEY,
+        		  		  libraries: "places,geocode",
+        		  		}}
+        		  		render={googleMaps =>
+        	    			googleMaps && (
+        	    			  <div style={style.stylesDiv} className="mx-5 my-3">
+        	    			    <ReactGooglePlacesSuggest
+        	    			      autocompletionRequest={{input: search}}
+        	    			      googleMaps={googleMaps}
+        	    			      onSelectSuggest={this.handleSelectSuggest.bind(this)}
+        	    			    >
+        	    			      <input
+                            style={style.styles}
+                            className="form-control"
                             required
-        	  				        type="text"
-        	  				        value={value}
-        	  				        placeholder="Search a location"
-        	  				        onChange={this.handleInputChange.bind(this)}
-        	  				      />
-        	  				    </ReactGooglePlacesSuggest>
-        	  				  </div>
-        	  				)
-      						}
-      					/>  
+        	    			        type="text"
+        	    			        value={value}
+        	    			        placeholder="Search a location"
+        	    			        onChange={this.handleInputChange.bind(this)}
+        	    			      />
+        	    			    </ReactGooglePlacesSuggest>
+        	    			  </div>
+        	    			)
+      			  		}
+      			  	/>  
               </div>
               <div className="row">
                 <input
-                  className="mx-5 my-3"
+                  className="mx-5 my-3 form-control"
                   type="password"
                   placeholder="Enter password"
                   name="password"
@@ -143,12 +155,12 @@ class SignUp extends Component
                 <button className="mx-5 my-3 btn btn-info" type="submit">SignUp</button>
                 <Link className="mx-1 my-3 btn btn-success"  to="/">Login</Link>
               </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
 
 SignUp.propTypes = {
   googleMaps: PropTypes.object,
