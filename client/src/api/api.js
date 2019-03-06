@@ -1,4 +1,12 @@
 import axios from 'axios';
+import { saveAs } from 'file-saver';
+
+let Project_data=[];
+let Education_data=[];
+let Explain_data='';
+let Certificate_data=[];
+let Image_data='';
+let Skills_data=[];
 
 export const student_sign_Up = async (url,data) =>{
   console.log("data in api",data)
@@ -32,6 +40,7 @@ export const project = async (id) =>{
 		}
 	}).then(res=>res.json())
 	.catch(error=>alert(error));
+	Project_data=data;
 	return data;
 }
 
@@ -84,6 +93,7 @@ export const show_education_data = async (student_id) =>{
 		}
 	}).then(res=>res.json())
 	.catch(error=>alert(error));
+	Education_data=data;
 	return data;
 }
 
@@ -144,6 +154,7 @@ export const show_explain_data = async (student_id) =>{
 		}
 	}).then(res=>res.json())
 	.catch(error=>alert(error))
+	Explain_data=data;
 	return data;
 }
 
@@ -175,6 +186,7 @@ export const show_certificate_data = async () =>{
 		}
 	}).then(res=>res.json())
 	.catch(error=>alert(error))
+	Certificate_data=data;
 	return data;
 }
 
@@ -224,6 +236,7 @@ export const show_image_data = async () =>{
 	.catch(error=>alert(error))
 	try{
 		const image = data[0].student_image;
+		Image_data=image;
 		return image;
 	}catch(error){
 		console.log(error)
@@ -295,7 +308,8 @@ export const edit_email_data = async(email) =>{
 	await axios.patch(url,
 	{
 		"email":email,
-	},config);
+	},config)
+	.catch(error=>alert("mail already exists"));
 }
 
 export const edit_location_data = async(location) =>{
@@ -312,4 +326,67 @@ export const edit_location_data = async(location) =>{
 	{
 		"location":location,
 	},config);
+}
+
+export const save_skills_data = async(skills) =>{
+	const student_id=localStorage.getItem('id');
+	const data={
+		skills:skills,
+		student_id:student_id
+	}
+	const token=localStorage.getItem('token');
+	console.log("data in api save_skills.....",data)
+	await fetch("/skills",{
+		method:'POST',
+		body:JSON.stringify(data),
+		headers:{
+			'Content-Type':'application/json',
+			'authorization':'Bearer '+token
+		}
+	}).then(res=>res.json())
+	.catch(error=>alert(error))
+}
+
+export const show_skills_data = async()=>{
+	const token = localStorage.getItem('token');
+	const student_id = localStorage.getItem('id');
+	const url="/skills/"+student_id;
+	const data = await fetch(url,{
+		method:'GET',
+		headers:{
+			'Content-Type':'application/json',
+			'authorization':'Bearer '+token
+		}
+	}).then(res=>res.json())
+	.catch(error=>alert(error))
+	Skills_data=data;
+	return data;
+}
+
+export const generate_pdf_data = async()=>{
+	const Name_data=localStorage.getItem('name');
+	const Email_data=localStorage.getItem('email');
+	const Phone_data=localStorage.getItem('phone');
+	const Location_data=localStorage.getItem('location');
+	const Student_data={
+		Name:Name_data,
+		Phone:Phone_data,
+		Location:Location_data,
+		Email:Email_data,
+		Project:Project_data,
+		Explain:Explain_data,
+		Education:Education_data,
+		Certifciate:Certificate_data,
+		Image:Image_data,
+		Skills:Skills_data,
+	}
+	await axios.post("/pdf/create-pdf",Student_data)
+	.then(() => axios.get("/pdf/fetch-pdf", { responseType: 'blob' }))
+	.then((res) => { 
+		const pdfBlob = new Blob([res.data], { type: 'application/pdf' }
+		);
+		saveAs(pdfBlob, 'generatedDocument.pdf');
+	})
+	.catch(error=>console.log(error));
+	
 }

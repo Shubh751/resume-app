@@ -7,6 +7,7 @@ import Explain from '../container/Explain';
 import EditImage from '../container/EditImage';
 import AddImage from '../container/AddImage';
 import image from '../image/user.jpg';
+import Select from 'react-select';
 
 export default class Home extends Component{
   constructor(){
@@ -15,19 +16,18 @@ export default class Home extends Component{
         child:null,
         phone:null,
         email:null,
-        location:null
+        location:null,
+        skills:[],
       }
   };
 
   editImage = (event) =>{
     event.preventDefault();
-    console.log("in edit image")
     this.setState({ child:<EditImage/> })
   }
 
   addImage = (event) =>{
     event.preventDefault();
-    console.log("in add image")
     this.setState({ child:<AddImage/> })
   }
 
@@ -49,25 +49,55 @@ export default class Home extends Component{
     this.props.editLocationData(location);
   }
 
-  handleChnage = (event) =>{
+  handleChange = (event) =>{
     this.setState({ [event.target.name]: event.target.value });
   }
 
   componentDidMount(){
     this.props.showImageData();
-    this.setState({ 
-      phone:localStorage.getItem('phone'),
-      email:localStorage.getItem('email'),
-      location:localStorage.getItem('location')
-    });
+    this.props.showSkillsData();
+      this.setState({
+        phone:localStorage.getItem('phone'),
+        email:localStorage.getItem('email'),
+        location:localStorage.getItem('location')
+      });
+  }
+  
+  handleSkills = (skills) => {
+    this.setState({ skills });
   }
 
+  saveSkills = async(event) =>{
+    event.preventDefault();
+    let skills = Array.from(this.state.skills, option => option.value);
+    await this.props.saveSkillsData(skills);
+    this.props.showSkillsData();
+  }
+
+  editSkills = async(event)=>{
+    event.preventDefault();
+    this.props.editSkillsData();
+  }
+
+  saveDetails = (event) =>{
+    event.preventDefault();
+    this.props.generatePdf();
+  }
   logout =() =>{
     localStorage.clear();
     this.props.history.push("/");
   }
 
   render(){
+    const skillOptions = [
+      { value: 'C', label: 'C' },
+      { value: 'C++', label: 'C++' },
+      { value: 'JAVA', label: 'JAVA' },
+      { value: 'ReactJS', label: 'ReactJS' },
+      { value: 'NodeJS', label: 'NodeJS' },
+      { value: 'MongoDB', label: 'MongoDB' },
+      { value: 'MySQL', label: 'MySQL'}
+    ];
     return(
       <div className="Home">
         <div className="container-fluid">
@@ -75,12 +105,6 @@ export default class Home extends Component{
             <div className="col-11 col1">
               <h5 className="my-3">Resume Application</h5>
             </div>
-            {/* <div className="col-1">
-                <Link className="Link btn my-2" to='/home' onClick={this.reset}><b>Home</b></Link>
-            </div>
-            <div className="col-1">
-                <button className="Link btn my-2" onClick={this.renderChild}><b>Profile</b></button>
-            </div> */}
             <div className="col-1 col2">
                 <button className="Link btn my-2" onClick={this.logout}><b>Logout</b></button>
             </div>
@@ -170,7 +194,7 @@ export default class Home extends Component{
                         className="form-control"
                         name="phone"
                         value={this.state.phone}
-                        onChange={this.handleChnage}>
+                        onChange={this.handleChange}>
                       </input>
                       <input
                         type="submit"
@@ -190,7 +214,7 @@ export default class Home extends Component{
                        className="form-control"
                        name="email"
                        value={this.state.email}
-                       onChange={this.handleChnage}>
+                       onChange={this.handleChange}>
                      </input>
                      <input
                        type="submit"
@@ -210,7 +234,7 @@ export default class Home extends Component{
                        className="form-control"
                        name="location"
                        value={this.state.location}
-                       onChange={this.handleChnage}>
+                       onChange={this.handleChange}>
                      </input>
                      <input
                        type="submit"
@@ -222,7 +246,56 @@ export default class Home extends Component{
                 }
               </div>
               <div className="row row5 my-2">
-                Skills
+                {
+                  (this.props.Skills.length)?
+                  (
+                    <div>
+                      <Select
+                        defaultValue={[skillOptions[2], skillOptions[3]]}
+                        isMulti
+                        name="skills"
+                        value={this.state.skills}
+                        options={skillOptions}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                        onChange={this.handleSkills}
+                      />
+                      <button
+                        type="submit"
+                        onClick={this.editSkills}
+                        value="Save Skills">
+                        Edit Skills
+                      </button>
+                    </div>
+                  ):
+                  (
+                    <div>
+                      <Select
+                        // defaultValue={[skillOptions[2], skillOptions[3]]}
+                        isMulti
+                        name="skills"
+                        value={this.state.skills}
+                        options={skillOptions}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                        onChange={this.handleSkills}
+                      />
+                      <button
+                        type="submit"
+                        onClick={this.saveSkills}
+                        value="Save Skills">
+                        Save Skills
+                      </button>
+                    </div>
+                  )
+                }
+              </div>
+              <div className="row row6 my-3">
+                <button
+                  type="button"
+                  onClick={this.saveDetails}>
+                  Save
+                </button>
               </div>
             </div>
             <div className="col-10 col2">

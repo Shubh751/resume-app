@@ -8,7 +8,8 @@ const studentRoutes = require('../api/routes/students');
 const explainRoutes = require('../api/routes/explains');
 const certificateRoutes = require('../api/routes/certificates');
 const imageRoutes = require('../api/routes/images');
-
+const skillsRoutes = require('../api/routes/skills');
+const pdfRoutes = require('../api/routes/pdf');
 
 
 
@@ -36,12 +37,16 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/pdf',pdfRoutes)
 app.use('/education',educationRoutes);
 app.use('/student',studentRoutes);
 app.use('/project',projectRoutes);
 app.use('/explain',explainRoutes);
 app.use('/certificate',certificateRoutes);
 app.use('/image',imageRoutes);
+app.use('/skills',skillsRoutes);
+
+
 
 
 app.use((req,res,next)=>

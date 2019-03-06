@@ -146,24 +146,35 @@ router.patch("/editPhone/:studentId",(req,res,next)=>{
 
 router.patch("/editEmail/:studentId",(req,res,next)=>{
 	const id = req.params.studentId;
-  Student.update({ _id:id },
-    { 
-      $set:{
-        "email":req.body.email
-      }
-    }
-  )
+  Student.find({ email:req.body.email })
   .exec()
-  .then(result=>{
-    console.log(result);
-    res.status(200).json(result);
-  })
-  .catch(err =>{
-    console.log(err);
-    res.status(500).json({
-        error:err
+  .then(user=>{
+    if(user.length >= 1)
+    {
+        return res.status(409).json({
+            message:"Mail exists"
+        });
+    }else{
+    Student.update({ _id:id },
+      { 
+        $set:{
+          "email":req.body.email
+        }
+      }
+    )
+    .exec()
+    .then(result=>{
+      console.log(result);
+      res.status(200).json(result);
+    })
+    .catch(err =>{
+      console.log(err);
+      res.status(500).json({
+          error:err
+      });
     });
-  });
+  }
+});
 })
 
 router.patch("/editLocation/:studentId",(req,res,next)=>{

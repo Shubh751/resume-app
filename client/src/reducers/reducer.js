@@ -3,7 +3,8 @@ const initialState = {
   Education:[],
   Explain:[],
   Certificate:[],
-  Image:''
+  Image:'',
+  Skills:[]
  };
  
  const reducer = (state=initialState,action)=>
@@ -41,6 +42,13 @@ const initialState = {
       state={
         ...state,
         Image:action.value
+      }
+      break;
+    case 'SKILLS_DATA':
+      console.log("in skills-case",action.value)
+      state={
+        ...state,
+        Skills:action.value
       }
       break;
     default:

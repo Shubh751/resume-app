@@ -18,7 +18,10 @@ import {
   add_image_data,
   edit_phone_data,
   edit_email_data,
-  edit_location_data
+  edit_location_data,
+  save_skills_data,
+  show_skills_data,
+  generate_pdf_data
 } from '../api/api';
 
 
@@ -100,17 +103,28 @@ function* editPhoneData(action){
 }
 
 function* editEmailData(action){
-  yield call(edit_email_data,action.phone)
+  yield call(edit_email_data,action.email)
 }
 
 function* editLocationData(action){
   yield call(edit_location_data,action.location)
 }
 
+function* saveSkillsData(action){
+  yield call(save_skills_data,action.skills);
+}
+
+function* showSkillsData(){
+  const data = yield call(show_skills_data)
+  yield put({ type:'SKILLS_DATA', value:data })
+}
+
+function* generatePdf(){
+  yield call(generate_pdf_data)
+}
 
 export default function* rootSaga()
 {
-  console.log("in root saga")
   yield all(
   [
     yield takeLatest('SHOW_PROJECT',showProjectData),
@@ -131,7 +145,10 @@ export default function* rootSaga()
     yield takeLatest('ADD_IMAGE_DATA',addImageData),
     yield takeLatest('EDIT_PHONE_DATA',editPhoneData),
     yield takeLatest('EDIT_EMAIL_DATA',editEmailData),
-    yield takeLatest('EDIT_LOCATION_DATA',editLocationData)
+    yield takeLatest('EDIT_LOCATION_DATA',editLocationData),
+    yield takeLatest('SAVE_SKILLS_DATA',saveSkillsData),
+    yield takeLatest('SHOW_SKILLS_DATA',showSkillsData),
+    yield takeLatest('GENERATE_PDF',generatePdf)
   ])
 }
 

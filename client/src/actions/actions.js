@@ -73,3 +73,15 @@ export function edit_email(email){
 export function edit_location(location){
     return { type:'EDIT_LOCATION_DATA', location }
 }
+
+export function save_skills(skills){
+    return { type:'SAVE_SKILLS_DATA', skills }
+}
+
+export function show_skills(){
+    return { type:'SHOW_SKILLS_DATA' }
+}
+
+export function generate_pdf(){
+    return { type:'GENERATE_PDF' }
+}

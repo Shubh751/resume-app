@@ -75,19 +75,59 @@ img:hover{
   box-shadow: 5px 10px 18px #888888;
 }
 
-.Home > .container-fluid > .row2 > .col1 > .row2 > div > form > input[type="submit"]{
+.Home > .container-fluid > .row2 > .col1 > .row5{
+  text-align: center;
+  border-radius: 5px;
+  margin: 1px;
+  padding: 5px;
+  background-color: #E5E7E9;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+.Select{
+  width: 100%;
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row6 > button{
+  text-align: center;
+  border-radius: 5px;
+  margin-left: 35%;
+  padding: 8px 15px 8px 15px;
+  background-color: #A93226;
+  color:white;
+  border:none;
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row6 > button:hover{
+  text-align: center;
+  border-radius: 10px;
+  margin-left: 35%;
+  padding: 8px 15px 8px 15px;
+  background-color: white;
+  color:black;
+  border:solid black 1px;
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row2 > div > form > input[type="submit"],
+.Home > .container-fluid > .row2 > .col1 > .row5 > div > button{
   border: none;
   background-color: #85929E;
   color: white;
-  /* margin: 5px; */
+  margin: 5px;
+  margin-left: 10px;
 }
 
-.Home > .container-fluid > .row2 > .col1 > .row2 > div > form > input[type="submit"]:hover{
+.Home > .container-fluid > .row2 > .col1 > .row2 > div > form > input[type="submit"]:hover,
+.Home > .container-fluid > .row2 > .col1 > .row5 > div > button:hover{
   border: rgb(0, 0, 0) solid 1px;
   border-radius: 5px;
   background-color: white;
   color: rgb(0, 0, 0);
   /* margin: 5px; */
+}
+
+.Home > .container-fluid > .row2 > .col1 > .row5 > div {
+  width: 100%;
 }
 
 .Home > .container-fluid > .row2 > .col1 > .row3 > div > form > input[type="submit"]{
