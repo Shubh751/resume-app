@@ -19,7 +19,7 @@ router.get('/',checkAuth,(req,res,next)=>{
 });
 
 
-router.post('/',checkAuth, async (req,res,next)=>{
+router.post('/',checkAuth, async(req,res,next)=>{
 	const project = new Project({
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,

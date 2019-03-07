@@ -115,12 +115,12 @@ function* saveSkillsData(action){
 }
 
 function* showSkillsData(){
-  const data = yield call(show_skills_data)
-  yield put({ type:'SKILLS_DATA', value:data })
+  const Skills = yield call(show_skills_data)
+  yield put({ type:'SKILLS_DATA', value:Skills })
 }
 
-function* generatePdf(){
-  yield call(generate_pdf_data)
+function* generatePdfData(){
+  yield call(generate_pdf_data);
 }
 
 export default function* rootSaga()
@@ -148,7 +148,7 @@ export default function* rootSaga()
     yield takeLatest('EDIT_LOCATION_DATA',editLocationData),
     yield takeLatest('SAVE_SKILLS_DATA',saveSkillsData),
     yield takeLatest('SHOW_SKILLS_DATA',showSkillsData),
-    yield takeLatest('GENERATE_PDF',generatePdf)
+    yield takeLatest('GENERATE_PDF',generatePdfData)
   ])
 }
 

@@ -4,7 +4,7 @@ const initialState = {
   Explain:[],
   Certificate:[],
   Image:'',
-  Skills:[]
+  Skills:''
  };
  
  const reducer = (state=initialState,action)=>

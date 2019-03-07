@@ -37,7 +37,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/pdf',pdfRoutes)
+app.use('/pdf',pdfRoutes);
 app.use('/education',educationRoutes);
 app.use('/student',studentRoutes);
 app.use('/project',projectRoutes);
@@ -45,8 +45,6 @@ app.use('/explain',explainRoutes);
 app.use('/certificate',certificateRoutes);
 app.use('/image',imageRoutes);
 app.use('/skills',skillsRoutes);
-
-
 
 
 app.use((req,res,next)=>

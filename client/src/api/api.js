@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 
 let Project_data=[];
 let Education_data=[];
@@ -360,10 +360,19 @@ export const show_skills_data = async()=>{
 	}).then(res=>res.json())
 	.catch(error=>alert(error))
 	Skills_data=data;
+	// if(data.length){
+	// 	const Skills={
+	// 		Student_skills:data[0].skills,
+	// 		skills_id:data[0]._id
+	// 	}
+	// 	console.log("in show_skills",data[0]._id)
+	// 	return Skills;
+	// }
 	return data;
+	
 }
 
-export const generate_pdf_data = async()=>{
+export const generate_pdf_data = async() => {
 	const Name_data=localStorage.getItem('name');
 	const Email_data=localStorage.getItem('email');
 	const Phone_data=localStorage.getItem('phone');
@@ -380,13 +389,8 @@ export const generate_pdf_data = async()=>{
 		Image:Image_data,
 		Skills:Skills_data,
 	}
-	await axios.post("/pdf/create-pdf",Student_data)
-	.then(() => axios.get("/pdf/fetch-pdf", { responseType: 'blob' }))
-	.then((res) => { 
-		const pdfBlob = new Blob([res.data], { type: 'application/pdf' }
-		);
-		saveAs(pdfBlob, 'generatedDocument.pdf');
-	})
+	console.log("all data in api",Student_data)
+	await axios.post("/pdf",{Student_data})
+	.then(res=>console.log(res))
 	.catch(error=>console.log(error));
-	
 }

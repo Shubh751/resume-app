@@ -19,8 +19,8 @@ const mapDispatchToProps = dispatch => {
       editLocationData:(location)=> dispatch(edit_location(location)),
       saveSkillsData:(skills)=> dispatch(save_skills(skills)),
       showSkillsData:()=> dispatch(show_skills()),
-      // editSkillsData:()=> dispatch(edit_skills()),
       generatePdf:()=> dispatch(generate_pdf())
+      // editSkillsData:()=> dispatch(edit_skills()),
     }
   }
 

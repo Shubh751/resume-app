@@ -4,7 +4,7 @@ import ReactGoogleMapLoader from "react-google-maps-loader"
 import ReactGooglePlacesSuggest from "react-google-places-suggest"
 import '../css/AddProject.css';
 
-const API_KEY = "AIzaSyDwsdjfskhdbfjsdjbfksiTgnoriOAoUOgsUqOs10J0"
+const API_KEY = "AIzaSyCRm5TQ59RHJtx0ZFLBzznhst76HR4OsSo"
 
 export default class AddProject extends Component
 {

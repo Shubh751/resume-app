@@ -11,10 +11,6 @@
   background-color: rgb(245, 135, 108)
 }
 
-.Home > .container-fluid > .row2 > .col2 > .row1 > form > .form-group > textarea{
-  /* border: solid red 2px; */
-}
-
 .textarea{
   width: 100%;
 }
@@ -34,10 +30,6 @@ h5{
 hr{
   padding: 0%;
   margin: 0%;
-}
-
-.Home > .App > .container-fluid > .row2 > .col3 > .row2 > button{
-  /* border-bottom: rgb(92, 156, 172) 1px; */
 }
 
 img:hover{
@@ -86,26 +78,6 @@ img:hover{
 
 .Select{
   width: 100%;
-}
-
-.Home > .container-fluid > .row2 > .col1 > .row6 > button{
-  text-align: center;
-  border-radius: 5px;
-  margin-left: 35%;
-  padding: 8px 15px 8px 15px;
-  background-color: #A93226;
-  color:white;
-  border:none;
-}
-
-.Home > .container-fluid > .row2 > .col1 > .row6 > button:hover{
-  text-align: center;
-  border-radius: 10px;
-  margin-left: 35%;
-  padding: 8px 15px 8px 15px;
-  background-color: white;
-  color:black;
-  border:solid black 1px;
 }
 
 .Home > .container-fluid > .row2 > .col1 > .row2 > div > form > input[type="submit"],
@@ -164,10 +136,36 @@ img:hover{
   text-align: center;
 }
 
-.Home > .container-fluid > .row1 > .col1{
+.Home > .container-fluid > .row1 > .col1
+{
   text-align: left;
 }
 
 .Home > .container-fluid > .row1 > .col2{
   float: right;
+}
+
+.Home > .container-fluid > .row2 > .col2 > .row5  > button{
+  text-align: center;
+  border-radius: 5px;
+  margin-left: 35%;
+  padding: 8px 15px 8px 15px;
+  background-color: #A93226;
+  color:white;
+  border:none;
+}
+
+.Home > .container-fluid > .row2 > .col2 > .row5 > button:hover
+{
+  text-align: center;
+  border-radius: 10px;
+  margin-left: 35%;
+  padding: 8px 15px 8px 15px;
+  background-color: white;
+  color:black;
+  border:solid black 1px;
+}
+
+.Home > .container-fluid > .row2 > .col2 > .row5 {
+  padding-left: 2%;
 }

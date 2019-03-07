@@ -8,6 +8,7 @@ import EditImage from '../container/EditImage';
 import AddImage from '../container/AddImage';
 import image from '../image/user.jpg';
 import Select from 'react-select';
+import Final from '../components/Final';
 
 export default class Home extends Component{
   constructor(){
@@ -18,6 +19,7 @@ export default class Home extends Component{
         email:null,
         location:null,
         skills:[],
+        final:null
       }
   };
 
@@ -70,8 +72,11 @@ export default class Home extends Component{
   saveSkills = async(event) =>{
     event.preventDefault();
     let skills = Array.from(this.state.skills, option => option.value);
-    await this.props.saveSkillsData(skills);
+    this.props.saveSkillsData(skills);
     this.props.showSkillsData();
+    await this.setState({
+      skills:this.props.Skills.Student_skills
+    });
   }
 
   editSkills = async(event)=>{
@@ -79,10 +84,12 @@ export default class Home extends Component{
     this.props.editSkillsData();
   }
 
-  saveDetails = (event) =>{
+  saveDetails = async(event) =>{
     event.preventDefault();
     this.props.generatePdf();
+    await this.setState({ final:<Final/> })
   }
+
   logout =() =>{
     localStorage.clear();
     this.props.history.push("/");
@@ -291,11 +298,7 @@ export default class Home extends Component{
                 }
               </div>
               <div className="row row6 my-3">
-                <button
-                  type="button"
-                  onClick={this.saveDetails}>
-                  Save
-                </button>
+                
               </div>
             </div>
             <div className="col-10 col2">
@@ -312,6 +315,34 @@ export default class Home extends Component{
               </div>
               <div className="row row4">
                 <div className="col-10"><Certificate/></div>
+              </div>
+              <div className="row row5">
+                {/* <div className="col-10 col1"> */}
+                  <button
+                    type="button"
+                    data-toggle="modal" 
+                    data-target="#final"
+                    onClick={this.saveDetails}>
+                    GET RESUME
+                  </button>
+								  <div className="modal fade" id="final" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  			  	<div className="modal-dialog modal-dialog-centered" role="document" >
+				    		  		<div className="modal-content">
+				      	  			<div className="modal-header">
+				      	  				<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+				      	  					<span aria-hidden="true">&times;</span>
+				      	  				</button>
+				      	  			</div>
+				      	  			<div className="modal-body">
+				      	  				{this.state.final}
+								  			</div>
+				      	  			<div className="modal-footer">
+				      	  				<button type="button" className="btn btn-secondary" data-dismiss="modal">OK</button>
+				      	  			</div>
+				    		  		</div>
+				  			  	</div>
+								  </div>
+                {/* </div> */}
               </div>
             </div>
           </div>
