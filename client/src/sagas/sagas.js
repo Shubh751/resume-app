@@ -21,7 +21,8 @@ import {
   edit_location_data,
   save_skills_data,
   show_skills_data,
-  generate_pdf_data
+  generate_pdf_data,
+  edit_skills_data
 } from '../api/api';
 
 
@@ -119,6 +120,10 @@ function* showSkillsData(){
   yield put({ type:'SKILLS_DATA', value:Skills })
 }
 
+function* editSkillsData(action){
+  yield call(edit_skills_data,action.skills_id,action.skills)
+}
+
 function* generatePdfData(){
   yield call(generate_pdf_data);
 }
@@ -148,6 +153,7 @@ export default function* rootSaga()
     yield takeLatest('EDIT_LOCATION_DATA',editLocationData),
     yield takeLatest('SAVE_SKILLS_DATA',saveSkillsData),
     yield takeLatest('SHOW_SKILLS_DATA',showSkillsData),
+    yield takeLatest('EDIT_SKILLS',editSkillsData),
     yield takeLatest('GENERATE_PDF',generatePdfData)
   ])
 }

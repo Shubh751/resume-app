@@ -169,3 +169,13 @@ img:hover{
 .Home > .container-fluid > .row2 > .col2 > .row5 {
   padding-left: 2%;
 }
+
+#skills{
+  /* border: solid red 1px; */
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-radius: 5px;
+  margin: 2%;
+  background-color: #b9f4f8;
+  font-family: "Times New Roman", Times, serif;
+}

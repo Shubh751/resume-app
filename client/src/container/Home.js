@@ -6,7 +6,8 @@ import {
   edit_location,
   save_skills,
   show_skills,
-  generate_pdf
+  generate_pdf,
+  edit_skills
 } from '../actions/actions';
 import { connect } from 'react-redux';
 
@@ -19,8 +20,8 @@ const mapDispatchToProps = dispatch => {
       editLocationData:(location)=> dispatch(edit_location(location)),
       saveSkillsData:(skills)=> dispatch(save_skills(skills)),
       showSkillsData:()=> dispatch(show_skills()),
+      editSkillsData:(skills_id,skills)=> dispatch(edit_skills(skills_id,skills)),
       generatePdf:()=> dispatch(generate_pdf())
-      // editSkillsData:()=> dispatch(edit_skills()),
     }
   }
 

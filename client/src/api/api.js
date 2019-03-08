@@ -360,16 +360,33 @@ export const show_skills_data = async()=>{
 	}).then(res=>res.json())
 	.catch(error=>alert(error))
 	Skills_data=data;
-	// if(data.length){
-	// 	const Skills={
-	// 		Student_skills:data[0].skills,
-	// 		skills_id:data[0]._id
-	// 	}
-	// 	console.log("in show_skills",data[0]._id)
-	// 	return Skills;
-	// }
+	console.log("data in show skills",data)
+	if(data.length){
+		const Skills={
+			student_skills:data[0].skills,
+			skills_id:data[0]._id
+		}
+		console.log("in show_skills",data[0]._id)
+		return Skills;
+	}
 	return data;
-	
+}
+
+export const edit_skills_data = async(skills_id,student_skills) =>{
+	const token=localStorage.getItem('token');
+	let skills = Array.from(student_skills, option => option.value);
+	console.log(".............",skills);
+	const url="/skills/"+skills_id;
+	let config={
+		headers:{
+		'Content-Type':'application/json',
+		'authorization':'Bearer '+token
+		}
+	}
+	await axios.patch(url,
+	{
+		"skills":skills,
+	},config);
 }
 
 export const generate_pdf_data = async() => {

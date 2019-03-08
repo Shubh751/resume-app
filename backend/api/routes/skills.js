@@ -60,30 +60,27 @@ router.get('/:studentId',checkAuth,(req,res,next)=>{
 
 
 router.patch('/:skillId',checkAuth,(req,res,next)=>{
-  const id = req.params.projectId;
-    // const updateOps = {};
-    // for(const ops of req.body){
-    //     updateOps[ops.propName] = ops.value;
-    // }
-    console.log("skills",req.body.skills)
-    Skill.update({ _id:id }, 
-      { 
-        $set:{
-          "skills":req.body.skills,
-        }
+  console.log("in skills edit request")
+  const id = req.params.skillId;
+  console.log("skills",req.body.skills)
+  Skill.update({ _id:id },
+    { 
+      $set:{
+        "skills":req.body.skills,
       }
-    )
-    .exec()
-    .then(result=>{
-        console.log(result);
-        res.status(200).json(result);
-    })
-    .catch(err =>{
-        console.log(err);
-        res.status(500).json({
-            error:err
-        });
-    });
+    }
+  )
+  .exec()
+  .then(result=>{
+      console.log(result);
+      res.status(200).json(result);
+  })
+  .catch(err =>{
+      console.log(err);
+      res.status(500).json({
+          error:err
+      });
+  });
 });
 
 

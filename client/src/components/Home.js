@@ -75,13 +75,13 @@ export default class Home extends Component{
     this.props.saveSkillsData(skills);
     this.props.showSkillsData();
     await this.setState({
-      skills:this.props.Skills.Student_skills
+      skills:this.props.Skills.student_skills
     });
   }
 
   editSkills = async(event)=>{
     event.preventDefault();
-    this.props.editSkillsData();
+    this.props.editSkillsData(this.props.Skills.skills_id,this.state.skills);
   }
 
   saveDetails = async(event) =>{
@@ -254,11 +254,21 @@ export default class Home extends Component{
               </div>
               <div className="row row5 my-2">
                 {
-                  (this.props.Skills.length)?
+                  (this.props.Skills.length!==0)?
                   (
                     <div>
+                      <div id="skills">
+                        {console.log("skills of state",this.state.skills)}
+                        {this.props.Skills.student_skills.map((skill,index)=>{
+                          return(
+                            <div key="index" className="my-1">
+                              {skill}
+                            </div>
+                          );
+                        })}
+                      </div>
                       <Select
-                        defaultValue={[skillOptions[2], skillOptions[3]]}
+                        // defaultValue={this.props.Skills.student_skills}
                         isMulti
                         name="skills"
                         value={this.state.skills}

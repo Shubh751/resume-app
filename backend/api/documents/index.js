@@ -13,13 +13,12 @@ return `
      </head>
      <body>
          <div class="header">
-         <p>{Student_data.Name}</p>
+         <p>${Student_data.Name}</p>
          <script>
-         for (var i=0;i< {Student_data.Education};i++){ 
-            +"<p>"+{Student_data.Education[i].qualification}+"</p>"+
+         for (var i=0;i< ${Student_data.Education};i++){ 
+            +"<p>"+${Student_data.Education[0].qualification}+"</p>"+
          }
          </script>
-         <p></p>
         </div>
      </body>
   </html>

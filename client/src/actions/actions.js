@@ -82,6 +82,10 @@ export function show_skills(){
     return { type:'SHOW_SKILLS_DATA' }
 }
 
+export function edit_skills(skills_id,skills){
+    return { type:'EDIT_SKILLS',skills_id,skills }
+}
+
 export function generate_pdf(){
     return { type:'GENERATE_PDF' }
 }
