@@ -37,6 +37,7 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.use('/pdf',pdfRoutes);
 app.use('/education',educationRoutes);
 app.use('/student',studentRoutes);

@@ -33,9 +33,23 @@ router.get('/',(req,res)=>{
 });
 
 router.post('/',(req,res)=>{
-  console.log("in post request")
-  console.log("Body",res.body)
-  pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) =>{
+  console.log("in post request");
+  console.log("Body",res.body);
+  var options = {
+    format:'A3',
+    header: {
+      "height": "5mm"
+    },
+    footer: {
+      "height": "5mm"
+    },
+    border:{
+      top:'30px',
+      bottom:'30px',
+      left:'10px'
+    }
+  }
+  pdf.create(pdfTemplate(req.body), options).toFile('result.pdf', (err) =>{
     if(err){
       res.send(Promise.reject());
     }

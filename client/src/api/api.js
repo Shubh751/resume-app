@@ -402,7 +402,7 @@ export const generate_pdf_data = async() => {
 		Project:Project_data,
 		Explain:Explain_data,
 		Education:Education_data,
-		Certifciate:Certificate_data,
+		Certificate:Certificate_data,
 		Image:Image_data,
 		Skills:Skills_data,
 	}
