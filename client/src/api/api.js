@@ -359,7 +359,7 @@ export const show_skills_data = async()=>{
 		}
 	}).then(res=>res.json())
 	.catch(error=>alert(error))
-	Skills_data=data;
+	Skills_data=data[0].skills;
 	console.log("data in show skills",data)
 	if(data.length){
 		const Skills={

@@ -79,9 +79,11 @@ export default class Home extends Component{
     });
   }
 
-  editSkills = async(event)=>{
+  editSkills = (event)=>{
     event.preventDefault();
     this.props.editSkillsData(this.props.Skills.skills_id,this.state.skills);
+    this.props.showSkillsData();
+    this.props.showSkillsData();
   }
 
   saveDetails = async(event) =>{
@@ -259,9 +261,9 @@ export default class Home extends Component{
                     <div>
                       <div id="skills">
                         {console.log("skills of state",this.state.skills)}
-                        {this.props.Skills.student_skills.map((skill,index)=>{
+                        {this.props.Skills.student_skills.map((skill,id)=>{
                           return(
-                            <div key="index" className="my-1">
+                            <div key="id" className="my-1">
                               {skill}
                             </div>
                           );
