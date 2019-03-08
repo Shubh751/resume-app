@@ -19,6 +19,7 @@ return `
             +"<p>"+{Student_data.Education[i].qualification}+"</p>"+
          }
          </script>
+         <p></p>
         </div>
      </body>
   </html>
