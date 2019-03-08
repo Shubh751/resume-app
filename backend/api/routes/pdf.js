@@ -3,14 +3,14 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const checkAuth = require('../middleware/check-auth');
 const pdf = require('html-pdf');
-const pdfTemplate = require('../documents/index');
+const pdfTemplate = require('../documents/index.js');
 // const cors = require('cors');
 
 const nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-         user: 'shubhamjaiswar51@gmail.com',
+         user: 'sjaiswar3373@gmail.com',
          pass: 'Abc@12345678'
      }
  });

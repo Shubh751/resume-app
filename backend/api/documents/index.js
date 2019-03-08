@@ -1,5 +1,4 @@
 module.exports = ({ Student_data }) => {
-  const today = new Date();
 return `
   <!doctype html>
   <html>
@@ -13,8 +12,13 @@ return `
         </style>
      </head>
      <body>
-        <div class="header">
-        <p>${Student_data.Name}</p>
+         <div class="header">
+         <p>{Student_data.Name}</p>
+         <script>
+         for (var i=0;i< {Student_data.Education};i++){ 
+            +"<p>"+{Student_data.Education[i].qualification}+"</p>"+
+         }
+         </script>
         </div>
      </body>
   </html>
