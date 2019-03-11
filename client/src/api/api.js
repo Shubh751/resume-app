@@ -292,7 +292,8 @@ export const edit_phone_data = async(phone) =>{
 	await axios.patch(url,
 	{
 		"phone":phone,
-	},config);
+	},config)
+	.then(localStorage.setItem('phone',phone));
 }
 
 export const edit_email_data = async(email) =>{
@@ -309,6 +310,7 @@ export const edit_email_data = async(email) =>{
 	{
 		"email":email,
 	},config)
+	.then(localStorage.setItem('email',email))
 	.catch(error=>alert("mail already exists"));
 }
 
@@ -325,7 +327,8 @@ export const edit_location_data = async(location) =>{
 	await axios.patch(url,
 	{
 		"location":location,
-	},config);
+	},config)
+	.then(localStorage.setItem('location',location));
 }
 
 export const save_skills_data = async(skills) =>{

@@ -15,17 +15,17 @@ var transporter = nodemailer.createTransport({
      }
  });
 
- const mailOptions = {
-  from: 'shubhamjaiswar51@gmail.com', // sender address
-  to: 'sjaiswar@bestpeers.com', // list of receivers
-  subject: 'Resume', // Subject line
-  html: '<p>Your html here</p>',// plain text body
-  attachments:[{
-    filename: 'result.pdf',
-    path: './result.pdf',
-    contentType: 'application/pdf'
-  }]
-};
+//  const mailOptions = {
+//   from: 'sjaiswar3373@gmail.com', // sender address
+//   to: '', // list of receivers
+//   subject: 'Resume', // Subject line
+//   html: '<p>Please Find your Resume in the attachment below</p>',// plain text body
+//   attachments:[{
+//     filename: 'result.pdf',
+//     path: './result.pdf',
+//     contentType: 'application/pdf'
+//   }]
+// };
 
 router.get('/',(req,res)=>{
   console.log("in get request")
@@ -34,7 +34,7 @@ router.get('/',(req,res)=>{
 
 router.post('/',(req,res)=>{
   console.log("in post request");
-  console.log("Body",res.body);
+  console.log("Email ....",req.body.Student_data.Email);
   var options = {
     format:'A3',
     header: {
@@ -55,11 +55,21 @@ router.post('/',(req,res)=>{
     }
     else
     {
-      transporter.sendMail(mailOptions,function (err, info) {
+      transporter.sendMail({
+        from: 'sjaiswar3373@gmail.com', // sender address
+        to: req.body.Student_data.Email, // list of receivers
+        subject: 'Resume', // Subject line
+        html: '<p>Please Find your Resume in the attachment below</p>',// plain text body
+        attachments:[{
+          filename: 'result.pdf',
+          path: './result.pdf',
+          contentType: 'application/pdf'
+        }]
+      },function (err, info) {
         if(err)
           console.log("error in mail-sent.....",err)
         else
-          console.log("ingo of mail-sent",info);
+          console.log("info of mail-sent",info);
       });
       res.send(Promise.resolve());
     }
