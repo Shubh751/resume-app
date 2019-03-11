@@ -14,6 +14,7 @@ export default class Explain extends Component{
   componentWillMount(){
     const student_id = localStorage.getItem('id');
     this.props.showExplainData(student_id);
+    this.props.showExplainData(student_id);
   }
 
   componentWillReceiveProps(nextProps){
@@ -55,6 +56,8 @@ export default class Explain extends Component{
     const explain_id=this.state.explain_id;
     this.props.editExplainData(explain,explain_id);
     this.setState({ flag:'Edited' });
+    const student_id=localStorage.getItem('id');
+    this.props.showExplainData(student_id);
   }
 
   render(){

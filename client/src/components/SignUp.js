@@ -7,7 +7,7 @@ import PropTypes from "prop-types"
 import ReactGoogleMapLoader from "react-google-maps-loader"
 import ReactGooglePlacesSuggest from "react-google-places-suggest"
 
-const API_KEY = "AIzaSyDwsdjfskhdbfjsdjbfksiTgnoriOAoUOgsUqOs10J0"
+const API_KEY = ""
 
 class SignUp extends Component
 {
